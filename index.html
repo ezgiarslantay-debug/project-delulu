@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<title>Project Delulu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:linear-gradient(180deg,#FAF7F4 0%,#F5EDE4 100%);color:#2C2520;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:0;height:0}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes popIn{0%{transform:scale(0.8);opacity:0}60%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(120px) rotate(720deg);opacity:0}}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:#E8E0D8;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#D4A574;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.15)}
+.habit-toggle{transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+.habit-toggle:active{transform:scale(0.95)}
+.tab-btn{transition:all 0.25s ease}
+.exp-card{transition:all 0.3s ease}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+const e=React.createElement,{useState,useEffect,useCallback}=React;
+
+const DAILY_HABITS=[
+{id:"wake",label:"Wake 7am",icon:"\u2600\uFE0F",subtitle:"Rise with intention",category:"ritual"},
+{id:"jackie",label:"Jackie HQ",icon:"\uD83D\uDC51",subtitle:"Step into HER",category:"ritual"},
+{id:"meditation",label:"Meditation",icon:"\uD83E\uDDD8\u200D\u2640\uFE0F",subtitle:"30 minutes",category:"mind"},
+{id:"walk",label:"Walk",icon:"\uD83D\uDEB6\u200D\u2640\uFE0F",subtitle:"1 hour",category:"body"},
+{id:"yoodli",label:"Yoodli Practice",icon:"\uD83C\uDF99\uFE0F",subtitle:"1 hour BLUF drills",category:"career"},
+{id:"italian",label:"Italian",icon:"\uD83C\uDDEE\uD83C\uDDF9",subtitle:"30 minutes",category:"mind"},
+{id:"outreach",label:"LinkedIn Outreach",icon:"\uD83D\uDCAC",subtitle:"5 connections",category:"career",weekdayOnly:true},
+{id:"applications",label:"Job Applications",icon:"\uD83D\uDCE8",subtitle:"10 applications",category:"career",weekdayOnly:true},
+{id:"content",label:"Content Created",icon:"\uD83C\uDFAC",subtitle:"TikTok / Substack",category:"creative"},
+{id:"ai",label:"AI Deep Work",icon:"\uD83E\uDD16",subtitle:"2 hour session",category:"career"},
+{id:"nocarbs",label:"No Carbs & Sugar",icon:"\uD83E\uDD57",subtitle:"Clean fuel only",category:"body"}
+];
+
+const BOOTCAMP_GOALS=[
+{id:"g1",label:"Land 3+ final-round interviews",target:3,icon:"\uD83C\uDFAF"},
+{id:"g2",label:"200+ LinkedIn connections made",target:200,icon:"\uD83E\uDD1D"},
+{id:"g3",label:"300+ job applications sent",target:300,icon:"\uD83D\uDCEC"},
+{id:"g4",label:"Publish 12 TikToks",target:12,icon:"\uD83D\uDCF1"},
+{id:"g5",label:"Complete Italian A1 module",target:100,icon:"\uD83C\uDDEE\uD83C\uDDF9"},
+{id:"g6",label:"Yoodli score above 80",target:80,icon:"\uD83C\uDFA4"},
+{id:"g7",label:"30-day meditation streak",target:30,icon:"\u2728"},
+{id:"g8",label:"Publish 4 Substack essays",target:4,icon:"\u270D\uFE0F"}
+];
+
+const EXPERIENCE_CATEGORIES=["All","Career Moves","Body & Mind","Creative Life","Pure Joy"];
+
+const EXPERIENCES=[
+{id:"e1",title:"The Cold Pitch",desc:"Send a bold DM to someone you admire at a company you want. Not a template. A real, specific, slightly audacious message.",category:"Career Moves",vibe:"high agency",time:"15 min",difficulty:"Medium"},
+{id:"e2",title:"The Rejection Collector",desc:"Apply to 3 roles that feel slightly above your level. The goal is the application itself, not the outcome. Stack proof that you tried.",category:"Career Moves",vibe:"addicted to failing",time:"2 hrs",difficulty:"Easy"},
+{id:"e3",title:"Sunrise Walk & Voice Note",desc:"Leave the house before 7:30am. Walk for 40 minutes. Record a voice note to yourself about what you actually want, no filters.",category:"Body & Mind",vibe:"grounding",time:"1 hr",difficulty:"Easy"},
+{id:"e4",title:"The 20-Minute Italian Caf\u00E9",desc:"Go to a caf\u00E9, order in Italian (even badly), and spend 20 minutes journaling in Italian. Embarrassment is the price of fluency.",category:"Pure Joy",vibe:"speed of action",time:"45 min",difficulty:"Medium"},
+{id:"e5",title:"Film Your Worst Take",desc:"Record a TikTok that you think is terrible. Post it anyway. The algorithm doesn't care about your perfectionism.",category:"Creative Life",vibe:"addicted to failing",time:"30 min",difficulty:"Hard"},
+{id:"e6",title:"The Board Meeting",desc:"Sit with your journal and write a letter FROM one of your Board of Directors (Michelle Obama, Emma Grede, Jennifer Lawrence, Dr. Joe Dispenza) TO you. What would they say about this week?",category:"Body & Mind",vibe:"identity work",time:"30 min",difficulty:"Easy"},
+{id:"e7",title:"Mock Interview Gauntlet",desc:"Do 3 back-to-back Yoodli sessions. First one: warm-up. Second: record and review. Third: nail the BLUF.",category:"Career Moves",vibe:"speed of action",time:"2 hrs",difficulty:"Hard"},
+{id:"e8",title:"The Matter Draft Sprint",desc:"Set a 45-minute timer. Write 800 words for The Matter. No editing. No backspace. Just forward motion.",category:"Creative Life",vibe:"high agency",time:"45 min",difficulty:"Medium"},
+{id:"e9",title:"Pilates & Visualization",desc:"During your next Pilates session, spend the last 5 minutes in shavasana visualizing yourself in the VP role. Where's the office? What are you wearing? Who calls you first?",category:"Body & Mind",vibe:"manifestation",time:"1 hr",difficulty:"Easy"},
+{id:"e10",title:"The Amsterdam Scroll",desc:"Spend 30 minutes researching a specific Amsterdam neighborhood where you could live. Look at apartments. Find the nearest tennis court. Make it feel real.",category:"Pure Joy",vibe:"high agency",time:"30 min",difficulty:"Easy"},
+{id:"e11",title:"Salary Research Hour",desc:"Look up exact compensation data for VP Growth/Marketing roles at 5 companies you'd actually want to work at. Know your number.",category:"Career Moves",vibe:"high agency",time:"1 hr",difficulty:"Medium"},
+{id:"e12",title:"Tennis Content Deep Dive",desc:"Watch one full match. Take notes like a commentator would. Record your hot takes. This is your Eurosport audition tape.",category:"Creative Life",vibe:"creative joy",time:"3 hrs",difficulty:"Easy"},
+{id:"e13",title:"The Dopamine Reset",desc:"One full evening with no phone, no laptop, no screens. Just music, cooking, stretching, and being. Boredom is where ideas live.",category:"Body & Mind",vibe:"grounding",time:"4 hrs",difficulty:"Hard"},
+{id:"e14",title:"Secret LinkedIn Article",desc:"Write a LinkedIn post about something you learned from the Advidi rejection. Don't publish it (yet). Sit with the vulnerability for 24 hours.",category:"Career Moves",vibe:"radical authenticity",time:"1 hr",difficulty:"Medium"},
+{id:"e15",title:"The Lucky Girl Walk",desc:"Go for a walk with one rule: say yes to every impulse. Turn left? Sure. Go into that shop? Why not. This is about trusting your instincts.",category:"Pure Joy",vibe:"manifestation",time:"1 hr",difficulty:"Easy"},
+{id:"e16",title:"Cook Something Ridiculous",desc:"Pick one Italian recipe that feels ambitious. Attempt it. Take photos. The mess is the content.",category:"Pure Joy",vibe:"creative joy",time:"2 hrs",difficulty:"Medium"}
+];
+
+const AFFIRMATIONS=[
+"Jackie doesn't wait for permission.",
+"Your rejection data is someone else's dream resume.",
+"The VP role is looking for you too.",
+"Today's messy action beats next week's perfect plan.",
+"Amsterdam is already expecting you.",
+"Your accent in Italian is charming, not embarrassing.",
+"Three principles: High Agency. Speed of Action. Addicted to Failing.",
+"The algorithm rewards courage, not polish.",
+"You've built companies from zero. A bootcamp is a warmup.",
+"HER doesn't snooze the alarm."
+];
+
+const ACHIEVEMENTS=[
+{id:"a1",label:"First Blood",desc:"Complete your first full day",threshold:1,icon:"\uD83E\uDE78"},
+{id:"a2",label:"Hat Trick",desc:"3 perfect days in a row",threshold:3,icon:"\uD83C\uDFA9"},
+{id:"a3",label:"Week One Warrior",desc:"Survive the first 7 days",threshold:7,icon:"\u2694\uFE0F"},
+{id:"a4",label:"The Checkpoint",desc:"Reach day 13",threshold:13,icon:"\uD83C\uDFC1"},
+{id:"a5",label:"Halfway There",desc:"Day 21 of 42",threshold:21,icon:"\uD83C\uDF17"},
+{id:"a6",label:"The Final Push",desc:"Enter the last week",threshold:36,icon:"\uD83D\uDD25"},
+{id:"a7",label:"LOCKED IN",desc:"Complete all 42 days",threshold:42,icon:"\uD83D\uDD12"}
+];
+
+const START_DATE=new Date(2026,2,16);
+const END_DATE=new Date(2026,3,26);
+
+function generateDays(){const days=[];let d=new Date(2026,2,16);while(d<=END_DATE){days.push(new Date(d));d.setDate(d.getDate()+1)}return days}
+const ALL_DAYS=generateDays();
+function getDayNumber(date){return Math.floor((date-START_DATE)/(1000*60*60*24))+1}
+function isWeekend(date){return date.getDay()===0||date.getDay()===6}
+function formatDate(date){return date.toLocaleDateString("en-US",{month:"short",day:"numeric"})}
+function formatDay(date){return date.toLocaleDateString("en-US",{weekday:"short"})}
+function isSameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+function dateKey(d){return d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()}
+
+// localStorage helpers
+function loadJSON(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch(e){return fallback}}
+function saveJSON(key,val){try{localStorage.setItem(key,JSON.stringify(val))}catch(e){}}
+
+function App(){
+const[activeTab,setActiveTab]=useState("today");
+const today=new Date();
+const closestDay=ALL_DAYS.reduce((prev,curr)=>Math.abs(curr-today)<Math.abs(prev-today)?curr:prev);
+const[selectedDate,setSelectedDate]=useState(closestDay);
+const[completions,setCompletions]=useState(()=>loadJSON("pd_completions",{}));
+const[savedExperiences,setSavedExperiences]=useState(()=>loadJSON("pd_saved",[]));
+const[goalProgress,setGoalProgress]=useState(()=>loadJSON("pd_goals",BOOTCAMP_GOALS.reduce((a,g)=>({...a,[g.id]:0}),{})));
+const[browseFilter,setBrowseFilter]=useState("All");
+const[browseMode,setBrowseMode]=useState("browse");
+const[goalEditing,setGoalEditing]=useState(null);
+const[showAffirmation,setShowAffirmation]=useState(false);
+const[currentAffirmation,setCurrentAffirmation]=useState(0);
+const[confetti,setConfetti]=useState([]);
+
+// Persist to localStorage
+useEffect(()=>{saveJSON("pd_completions",completions)},[completions]);
+useEffect(()=>{saveJSON("pd_saved",savedExperiences)},[savedExperiences]);
+useEffect(()=>{saveJSON("pd_goals",goalProgress)},[goalProgress]);
+
+function triggerConfetti(){
+const p=Array.from({length:12},(_,i)=>({id:Date.now()+i,x:Math.random()*100,delay:Math.random()*0.3,color:["#D4A574","#8B9E7C","#C4956A","#A67C5B","#E8D5C0"][Math.floor(Math.random()*5)]}));
+setConfetti(p);setTimeout(()=>setConfetti([]),1200);
+}
+
+function toggleHabit(habitId){
+const key=dateKey(selectedDate);
+const current=completions[key]||{};
+if(!current[habitId])triggerConfetti();
+setCompletions(prev=>{const dayData=prev[key]||{};return{...prev,[key]:{...dayData,[habitId]:!dayData[habitId]}}});
+}
+
+function getDayCompletions(date){return completions[dateKey(date)]||{}}
+function getDayProgress(date){
+const dc=getDayCompletions(date);const wk=isWeekend(date);
+const applicable=DAILY_HABITS.filter(h=>!wk||!h.weekdayOnly);
+const done=applicable.filter(h=>dc[h.id]).length;
+return applicable.length>0?done/applicable.length:0;
+}
+function getOverallProgress(){
+let total=0,done=0;
+ALL_DAYS.forEach(d=>{const dc=getDayCompletions(d);const wk=isWeekend(d);const applicable=DAILY_HABITS.filter(h=>!wk||!h.weekdayOnly);total+=applicable.length;done+=applicable.filter(h=>dc[h.id]).length});
+return total>0?done/total:0;
+}
+function getCompletedDaysCount(){return ALL_DAYS.filter(d=>getDayProgress(d)===1).length}
+function toggleSaveExperience(id){setSavedExperiences(prev=>prev.includes(id)?prev.filter(x=>x!==id):[...prev,id])}
+function cycleAffirmation(){setCurrentAffirmation(p=>(p+1)%AFFIRMATIONS.length);setShowAffirmation(true);setTimeout(()=>setShowAffirmation(false),3000)}
+
+const currentDayNumber=getDayNumber(today);
+const totalDays=42;
+const daysRemaining=Math.max(0,Math.ceil((END_DATE-today)/(1000*60*60*24)));
+const sprintProgress=Math.min(1,Math.max(0,currentDayNumber/totalDays));
+const dayProgress=getDayProgress(selectedDate);
+const dayCompletions_=getDayCompletions(selectedDate);
+const weekend=isWeekend(selectedDate);
+const applicableHabits=DAILY_HABITS.filter(h=>!weekend||!h.weekdayOnly);
+const filteredExperiences=browseMode==="saved"?EXPERIENCES.filter(x=>savedExperiences.includes(x.id)):browseFilter==="All"?EXPERIENCES:EXPERIENCES.filter(x=>x.category===browseFilter);
+
+const S={
+root:{fontFamily:"'DM Sans',-apple-system,sans-serif",background:"linear-gradient(180deg,#FAF7F4 0%,#F5EDE4 100%)",minHeight:"100vh",color:"#2C2520",maxWidth:480,margin:"0 auto",position:"relative",overflow:"hidden"},
+header:{padding:"40px 24px 20px",background:"linear-gradient(180deg,#F0E6DA 0%,#FAF7F4 100%)"},
+headerInner:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20},
+title:{fontFamily:"'Cormorant Garamond',serif",fontSize:32,fontWeight:600,letterSpacing:-0.5,color:"#2C2520",lineHeight:1.1},
+subtitle:{fontFamily:"'Cormorant Garamond',serif",fontSize:15,fontWeight:400,fontStyle:"italic",color:"#8A7E74",marginTop:4},
+dayBadge:{background:"#2C2520",borderRadius:14,padding:"10px 16px",display:"flex",flexDirection:"column",alignItems:"center",cursor:"pointer"},
+dayBadgeNum:{fontSize:18,fontWeight:700,color:"#D4A574",lineHeight:1.1},
+dayBadgeSub:{fontSize:10,color:"#A09080",letterSpacing:1,textTransform:"uppercase"},
+sprintBarTrack:{height:6,background:"#E8E0D8",borderRadius:3,position:"relative",marginTop:8},
+sprintBarFill:{height:"100%",background:"linear-gradient(90deg,#D4A574,#C4956A)",borderRadius:3,transition:"width 1s ease"},
+sprintMeta:{display:"flex",justifyContent:"space-between",marginTop:8},
+sprintMetaText:{fontSize:11,color:"#A09080"},
+nav:{display:"flex",gap:4,padding:"8px 24px",borderBottom:"1px solid #E8E0D8",background:"#FAF7F4",position:"sticky",top:0,zIndex:100},
+tabBtn:{flex:1,padding:"10px 0",fontSize:12,fontWeight:500,color:"#A09080",background:"transparent",border:"none",borderRadius:8,cursor:"pointer",letterSpacing:0.3,fontFamily:"'DM Sans',sans-serif"},
+tabBtnActive:{color:"#2C2520",background:"#E8E0D8",fontWeight:600},
+main:{padding:"20px 24px 100px"},
+datePicker:{display:"flex",gap:6,marginBottom:24,justifyContent:"center"},
+dateChip:{display:"flex",flexDirection:"column",alignItems:"center",padding:"8px 10px",borderRadius:12,background:"#fff",border:"1.5px solid #E8E0D8",cursor:"pointer",transition:"all 0.2s",minWidth:48},
+dateChipActive:{background:"#2C2520",borderColor:"#2C2520",color:"#fff"},
+dateChipToday:{borderColor:"#D4A574"},
+dateChipDay:{fontSize:10,fontWeight:500,opacity:0.6,marginBottom:2},
+dateChipNum:{fontSize:16,fontWeight:600,color:"#2C2520"},
+dateChipDone:{fontSize:8,color:"#8B9E7C",fontWeight:600,marginTop:2,textTransform:"uppercase",letterSpacing:0.5},
+progressSection:{display:"flex",alignItems:"center",gap:24,marginBottom:28,justifyContent:"center"},
+progressRingInner:{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",textAlign:"center"},
+progressPercent:{fontSize:28,fontWeight:700,color:"#2C2520",display:"block",fontFamily:"'Cormorant Garamond',serif"},
+progressLabel:{fontSize:10,color:"#A09080",letterSpacing:0.5},
+progressStats:{display:"flex",gap:16,alignItems:"center"},
+statItem:{display:"flex",flexDirection:"column",alignItems:"center"},
+statNum:{fontSize:22,fontWeight:700,color:"#2C2520",fontFamily:"'Cormorant Garamond',serif"},
+statLabel:{fontSize:10,color:"#A09080",marginTop:2},
+statDivider:{width:1,height:30,background:"#E8E0D8"},
+categoryLabel:{fontSize:11,fontWeight:600,color:"#A09080",textTransform:"uppercase",letterSpacing:1.5,marginBottom:8},
+habitCard:{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 16px",background:"#fff",borderRadius:14,marginBottom:6,cursor:"pointer",border:"1.5px solid #E8E0D8",userSelect:"none"},
+habitCardDone:{background:"#F5F8F2",borderColor:"#C8D5BE"},
+habitLeft:{display:"flex",alignItems:"center",gap:12},
+habitIcon:{fontSize:22},
+habitLabel:{fontSize:14,fontWeight:500,color:"#2C2520",transition:"all 0.3s"},
+habitSub:{fontSize:11,color:"#A09080",marginTop:1},
+checkbox:{width:26,height:26,borderRadius:8,border:"2px solid #D4C8BE",display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.3s",flexShrink:0},
+checkboxDone:{background:"#8B9E7C",borderColor:"#8B9E7C"},
+weekendNote:{background:"#F5EDE4",borderRadius:12,padding:"12px 16px",marginTop:16},
+weekendNoteText:{fontSize:13,color:"#A09080",fontStyle:"italic"},
+sectionTitle:{fontFamily:"'Cormorant Garamond',serif",fontSize:26,fontWeight:600,color:"#2C2520",marginBottom:4},
+sectionSub:{fontSize:13,color:"#A09080",marginBottom:20},
+weekCard:{background:"#fff",borderRadius:16,padding:"16px 18px",border:"1px solid #E8E0D8",marginBottom:12},
+weekCardHeader:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8},
+weekLabel:{fontSize:14,fontWeight:600,color:"#2C2520"},
+weekPercent:{fontSize:14,fontWeight:700,color:"#D4A574",fontFamily:"'Cormorant Garamond',serif"},
+weekBarTrack:{height:4,background:"#E8E0D8",borderRadius:2,marginBottom:10},
+weekBarFill:{height:"100%",background:"linear-gradient(90deg,#D4A574,#C4956A)",borderRadius:2,transition:"width 0.6s ease"},
+weekDays:{display:"flex",gap:6,justifyContent:"space-between"},
+weekDayDot:{width:32,height:32,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",transition:"background 0.3s"},
+overallCard:{background:"#2C2520",borderRadius:20,padding:24,marginTop:24},
+overallTitle:{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:500,color:"#D4A574",marginBottom:16},
+overallStats:{display:"flex",justifyContent:"space-around"},
+overallStatItem:{display:"flex",flexDirection:"column",alignItems:"center"},
+overallStatNum:{fontSize:28,fontWeight:700,color:"#F5EDE4",fontFamily:"'Cormorant Garamond',serif"},
+overallStatLabel:{fontSize:10,color:"#A09080",marginTop:4,textTransform:"uppercase",letterSpacing:0.8},
+goalCard:{background:"#fff",borderRadius:16,padding:18,border:"1px solid #E8E0D8",marginBottom:10},
+goalTop:{display:"flex",alignItems:"center",gap:14},
+goalLabel:{fontSize:14,fontWeight:500,color:"#2C2520",marginBottom:8},
+goalBarTrack:{height:6,background:"#E8E0D8",borderRadius:3},
+goalBarFill:{height:"100%",borderRadius:3,transition:"width 0.6s ease"},
+goalBottom:{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:10},
+goalProgress_:{fontSize:13,fontWeight:600,color:"#D4A574",cursor:"pointer",fontFamily:"'Cormorant Garamond',serif"},
+goalPercent:{fontSize:13,color:"#A09080"},
+goalSlider:{marginTop:12,padding:"0 4px"},
+browseHeader:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4},
+modeToggle:{fontSize:12,fontWeight:600,color:"#D4A574",background:"transparent",border:"1.5px solid #D4A574",borderRadius:20,padding:"6px 14px",cursor:"pointer",fontFamily:"'DM Sans',sans-serif"},
+filterRow:{display:"flex",gap:6,marginBottom:20,overflowX:"auto",paddingBottom:4},
+filterChip:{fontSize:11,fontWeight:500,color:"#A09080",background:"#fff",border:"1px solid #E8E0D8",borderRadius:20,padding:"6px 14px",cursor:"pointer",whiteSpace:"nowrap",fontFamily:"'DM Sans',sans-serif",transition:"all 0.2s"},
+filterChipActive:{color:"#fff",background:"#2C2520",borderColor:"#2C2520"},
+expCard:{background:"#fff",borderRadius:18,padding:20,border:"1px solid #E8E0D8",marginBottom:12},
+expCardTop:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10},
+expCategory:{fontSize:10,fontWeight:600,color:"#A09080",textTransform:"uppercase",letterSpacing:1.2},
+heartBtn:{fontSize:20,background:"none",border:"none",cursor:"pointer",color:"#D4A574",padding:4},
+expTitle:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:600,color:"#2C2520",marginBottom:8,lineHeight:1.2},
+expDesc:{fontSize:13,color:"#6B5E54",lineHeight:1.55,marginBottom:14},
+expMeta:{display:"flex",gap:6,flexWrap:"wrap"},
+expTag:{fontSize:10,fontWeight:500,color:"#8A7E74",background:"#FAF7F4",borderRadius:6,padding:"4px 10px"},
+emptyState:{textAlign:"center",padding:"40px 20px"},
+emptyText:{fontSize:14,color:"#A09080",lineHeight:1.5},
+trophyGrid:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:32},
+trophyCard:{borderRadius:18,padding:"20px 16px",textAlign:"center",position:"relative",overflow:"hidden"},
+trophyUnlocked:{background:"linear-gradient(135deg,#F5EDE4,#FFF)",border:"1.5px solid #D4A574"},
+trophyLocked:{background:"#F5F3F0",border:"1.5px solid #E8E0D8"},
+trophyLabel:{fontSize:13,fontWeight:600,color:"#2C2520",marginTop:8},
+trophyDesc:{fontSize:11,color:"#A09080",marginTop:4},
+trophyGlow:{position:"absolute",top:-20,right:-20,width:60,height:60,background:"radial-gradient(circle,rgba(212,165,116,0.2),transparent)",borderRadius:"50%"},
+quoteCard:{background:"#2C2520",borderRadius:18,padding:"24px 20px",cursor:"pointer",marginBottom:32},
+quoteText:{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,fontStyle:"italic",color:"#E8D5C0",lineHeight:1.5},
+quoteTap:{fontSize:10,color:"#A09080",marginTop:12,textTransform:"uppercase",letterSpacing:1},
+boardCard:{background:"#fff",borderRadius:16,padding:"16px 18px",border:"1px solid #E8E0D8",marginBottom:10},
+boardName:{fontFamily:"'Cormorant Garamond',serif",fontSize:17,fontWeight:600,color:"#2C2520"},
+boardRole:{fontSize:11,color:"#D4A574",fontWeight:500,marginTop:2,marginBottom:8},
+boardMsg:{fontSize:13,color:"#6B5E54",fontStyle:"italic",lineHeight:1.5},
+affirmationToast:{position:"fixed",top:20,left:"50%",transform:"translateX(-50%)",background:"#2C2520",borderRadius:14,padding:"14px 24px",zIndex:9999,maxWidth:360,textAlign:"center",animation:"slideDown 0.3s ease",boxShadow:"0 8px 32px rgba(44,37,32,0.3)"},
+affirmationText:{fontFamily:"'Cormorant Garamond',serif",fontSize:15,fontStyle:"italic",color:"#E8D5C0"},
+footer:{textAlign:"center",padding:24,borderTop:"1px solid #E8E0D8"},
+footerText:{fontFamily:"'Cormorant Garamond',serif",fontSize:14,fontStyle:"italic",color:"#A09080"},
+footerSub:{fontSize:10,color:"#C4B8AC",marginTop:4}
+};
+
+const catNames={ritual:"Morning Rituals",mind:"Mind",body:"Body",career:"Career",creative:"Creative"};
+
+// Confetti particles
+const confettiEls=confetti.map(p=>e("div",{key:p.id,style:{position:"fixed",top:"30%",left:p.x+"%",width:8,height:8,borderRadius:"50%",background:p.color,zIndex:9999,pointerEvents:"none",animation:"confettiFall 1s "+p.delay+"s ease-out forwards"}}));
+
+// Affirmation toast
+const toast=showAffirmation?e("div",{style:S.affirmationToast},e("p",{style:S.affirmationText},'"'+AFFIRMATIONS[currentAffirmation]+'"')):null;
+
+// SVG check
+const checkSvg=e("svg",{width:14,height:14,viewBox:"0 0 14 14",style:{animation:"popIn 0.3s ease"}},e("path",{d:"M2 7L5.5 10.5L12 3.5",stroke:"#fff",strokeWidth:2,fill:"none",strokeLinecap:"round"}));
+
+// Progress ring SVG
+const ringSvg=e("svg",{width:120,height:120,viewBox:"0 0 120 120"},
+e("circle",{cx:60,cy:60,r:52,fill:"none",stroke:"#E8E0D8",strokeWidth:6}),
+e("circle",{cx:60,cy:60,r:52,fill:"none",stroke:"#D4A574",strokeWidth:6,strokeDasharray:(dayProgress*327)+" 327",strokeLinecap:"round",transform:"rotate(-90 60 60)",style:{transition:"stroke-dasharray 0.6s cubic-bezier(0.34,1.56,0.64,1)"}})
+);
+
+// Date picker
+const dateIdx=ALL_DAYS.findIndex(d=>isSameDay(d,selectedDate));
+const visibleDays=ALL_DAYS.slice(Math.max(0,dateIdx-3),Math.min(ALL_DAYS.length,dateIdx+4));
+
+// Tab content
+let content=null;
+
+if(activeTab==="today"){
+content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
+// Date picker
+e("div",{style:S.datePicker},visibleDays.map(d=>
+e("button",{key:d.toISOString(),onClick:()=>setSelectedDate(d),style:{...S.dateChip,...(isSameDay(d,selectedDate)?S.dateChipActive:{}),...(isSameDay(d,today)?S.dateChipToday:{})}},
+e("span",{style:S.dateChipDay},formatDay(d)),
+e("span",{style:{...S.dateChipNum,...(isSameDay(d,selectedDate)?{color:"#fff"}:{})}},d.getDate()),
+getDayProgress(d)===1?e("span",{style:S.dateChipDone},"done"):null
+))),
+// Progress ring
+e("div",{style:S.progressSection},
+e("div",{style:{position:"relative",width:120,height:120,flexShrink:0}},ringSvg,
+e("div",{style:S.progressRingInner},e("span",{style:S.progressPercent},Math.round(dayProgress*100)+"%"),e("span",{style:S.progressLabel},formatDate(selectedDate)))
+),
+e("div",{style:S.progressStats},
+e("div",{style:S.statItem},e("span",{style:S.statNum},applicableHabits.filter(h=>dayCompletions_[h.id]).length),e("span",{style:S.statLabel},"Done")),
+e("div",{style:S.statDivider}),
+e("div",{style:S.statItem},e("span",{style:S.statNum},applicableHabits.length-applicableHabits.filter(h=>dayCompletions_[h.id]).length),e("span",{style:S.statLabel},"Left")),
+e("div",{style:S.statDivider}),
+e("div",{style:S.statItem},e("span",{style:S.statNum},getCompletedDaysCount()),e("span",{style:S.statLabel},"Perfect Days"))
+)),
+// Habits by category
+["ritual","mind","body","career","creative"].map(cat=>{
+const habits=applicableHabits.filter(h=>h.category===cat);
+if(habits.length===0)return null;
+return e("div",{key:cat,style:{marginBottom:20}},
+e("p",{style:S.categoryLabel},catNames[cat]),
+habits.map((habit,i)=>e("div",{key:habit.id,className:"habit-toggle",onClick:()=>toggleHabit(habit.id),style:{...S.habitCard,...(dayCompletions_[habit.id]?S.habitCardDone:{}),animation:"fadeInUp 0.4s "+(i*0.05)+"s ease backwards"}},
+e("div",{style:S.habitLeft},e("span",{style:S.habitIcon},habit.icon),e("div",null,e("p",{style:{...S.habitLabel,...(dayCompletions_[habit.id]?{textDecoration:"line-through",opacity:0.6}:{})}},habit.label),e("p",{style:S.habitSub},habit.subtitle))),
+e("div",{style:{...S.checkbox,...(dayCompletions_[habit.id]?S.checkboxDone:{})}},dayCompletions_[habit.id]?checkSvg:null)
+)))}),
+weekend?e("div",{style:S.weekendNote},e("p",{style:S.weekendNoteText},"Weekend mode: Outreach & Applications are off. Rest is productive too.")):null
+);
+}
+
+if(activeTab==="weekly"){
+content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
+e("h2",{style:S.sectionTitle},"Weekly View"),
+[0,1,2,3,4,5].map(wi=>{
+const weekDays=ALL_DAYS.slice(wi*7,wi*7+7);if(weekDays.length===0)return null;
+const wp=weekDays.reduce((s,d)=>s+getDayProgress(d),0)/weekDays.length;
+return e("div",{key:wi,style:{...S.weekCard,animation:"fadeInUp 0.4s "+(wi*0.08)+"s ease backwards"}},
+e("div",{style:S.weekCardHeader},e("span",{style:S.weekLabel},"Week "+(wi+1)),e("span",{style:S.weekPercent},Math.round(wp*100)+"%")),
+e("div",{style:S.weekBarTrack},e("div",{style:{...S.weekBarFill,width:(wp*100)+"%"}})),
+e("div",{style:S.weekDays},weekDays.map(d=>{const p=getDayProgress(d);return e("div",{key:d.toISOString(),onClick:()=>{setSelectedDate(d);setActiveTab("today")},style:{...S.weekDayDot,background:p===0?"#E8E0D8":p===1?"#8B9E7C":"#D4A574"},title:formatDate(d)+": "+Math.round(p*100)+"%"},e("span",{style:{fontSize:9,color:p>0.5?"#fff":"#8A7E74"}},d.getDate()))}))
+)}),
+e("div",{style:S.overallCard},
+e("h3",{style:S.overallTitle},"Bootcamp Totals"),
+e("div",{style:S.overallStats},
+e("div",{style:S.overallStatItem},e("span",{style:S.overallStatNum},Math.round(getOverallProgress()*100)+"%"),e("span",{style:S.overallStatLabel},"Overall")),
+e("div",{style:S.overallStatItem},e("span",{style:S.overallStatNum},getCompletedDaysCount()),e("span",{style:S.overallStatLabel},"Perfect Days")),
+e("div",{style:S.overallStatItem},e("span",{style:S.overallStatNum},ALL_DAYS.length),e("span",{style:S.overallStatLabel},"Total Days"))
+))
+);
+}
+
+if(activeTab==="goals"){
+content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
+e("h2",{style:S.sectionTitle},"Bootcamp Goals"),
+e("p",{style:S.sectionSub},"Tap any number to update your progress."),
+BOOTCAMP_GOALS.map((goal,i)=>{
+const progress=Math.min(1,goalProgress[goal.id]/goal.target);
+return e("div",{key:goal.id,style:{...S.goalCard,animation:"fadeInUp 0.4s "+(i*0.06)+"s ease backwards"}},
+e("div",{style:S.goalTop},e("span",{style:{fontSize:28}},goal.icon),e("div",{style:{flex:1}},e("p",{style:S.goalLabel},goal.label),e("div",{style:S.goalBarTrack},e("div",{style:{...S.goalBarFill,width:(progress*100)+"%",background:progress>=1?"#8B9E7C":"#D4A574"}})))),
+e("div",{style:S.goalBottom},e("span",{onClick:()=>setGoalEditing(goalEditing===goal.id?null:goal.id),style:S.goalProgress_},goalProgress[goal.id]+" / "+goal.target),e("span",{style:S.goalPercent},Math.round(progress*100)+"%")),
+goalEditing===goal.id?e("div",{style:S.goalSlider},e("input",{type:"range",min:0,max:goal.target,value:goalProgress[goal.id],onChange:ev=>setGoalProgress(p=>({...p,[goal.id]:parseInt(ev.target.value)})),style:{width:"100%"}})):null
+)})
+);
+}
+
+if(activeTab==="browse"){
+content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
+e("div",{style:S.browseHeader},
+e("h2",{style:S.sectionTitle},browseMode==="browse"?"Experience Boutique":"Your Collection"),
+e("button",{onClick:()=>setBrowseMode(browseMode==="browse"?"saved":"browse"),style:S.modeToggle},browseMode==="browse"?"Saved ("+savedExperiences.length+")":"Browse All")
+),
+browseMode==="browse"?e("div",{style:S.filterRow},EXPERIENCE_CATEGORIES.map(cat=>e("button",{key:cat,onClick:()=>setBrowseFilter(cat),style:{...S.filterChip,...(browseFilter===cat?S.filterChipActive:{})}},cat))):null,
+filteredExperiences.length===0?e("div",{style:S.emptyState},e("p",{style:{fontSize:40,marginBottom:12}},"\uD83D\uDECD\uFE0F"),e("p",{style:S.emptyText},browseMode==="saved"?"Nothing saved yet. Browse and tap the heart on experiences that call to you.":"No experiences in this category.")):null,
+filteredExperiences.map((exp,i)=>e("div",{key:exp.id,className:"exp-card",style:{...S.expCard,animation:"fadeInUp 0.4s "+(i*0.06)+"s ease backwards"}},
+e("div",{style:S.expCardTop},e("span",{style:S.expCategory},exp.category),e("button",{onClick:ev=>{ev.stopPropagation();toggleSaveExperience(exp.id)},style:S.heartBtn},savedExperiences.includes(exp.id)?"\u2665":"\u2661")),
+e("h3",{style:S.expTitle},exp.title),
+e("p",{style:S.expDesc},exp.desc),
+e("div",{style:S.expMeta},e("span",{style:S.expTag},exp.time),e("span",{style:S.expTag},exp.difficulty),e("span",{style:{...S.expTag,background:"#F5EDE4"}},exp.vibe))
+))
+);
+}
+
+if(activeTab==="trophies"){
+const board=[
+{name:"Michelle Obama",role:"Chief Courage Officer",msg:"You know what to do. Stop asking permission."},
+{name:"Emma Grede",role:"Head of Getting It Done",msg:"Revenue first. Everything else is a story you tell yourself."},
+{name:"Jennifer Lawrence",role:"VP of Not Taking Yourself Too Seriously",msg:"Post the embarrassing TikTok. Trust me."},
+{name:"Dr. Joe Dispenza",role:"Chief Belief Architect",msg:"The version of you who has the VP title already exists. Become her."}
+];
+content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
+e("h2",{style:S.sectionTitle},"Trophy Case"),
+e("p",{style:S.sectionSub},"Milestones unlocked along the way."),
+e("div",{style:S.trophyGrid},ACHIEVEMENTS.map((ach,i)=>{
+const unlocked=getCompletedDaysCount()>=ach.threshold;
+return e("div",{key:ach.id,style:{...S.trophyCard,...(unlocked?S.trophyUnlocked:S.trophyLocked),animation:"fadeInUp 0.4s "+(i*0.08)+"s ease backwards"}},
+e("span",{style:{fontSize:36,filter:unlocked?"none":"grayscale(1) opacity(0.4)"}},ach.icon),
+e("p",{style:S.trophyLabel},ach.label),
+e("p",{style:S.trophyDesc},ach.desc),
+unlocked?e("div",{style:S.trophyGlow}):null
+)})),
+e("h3",{style:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:500,color:"#2C2520",marginBottom:12}},"From Jackie's Desk"),
+e("div",{style:S.quoteCard,onClick:cycleAffirmation},e("p",{style:S.quoteText},'"'+AFFIRMATIONS[currentAffirmation]+'"'),e("p",{style:S.quoteTap},"tap for another")),
+e("h3",{style:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:500,color:"#2C2520",marginBottom:16}},"Your Board of Directors"),
+board.map((m,i)=>e("div",{key:i,style:{...S.boardCard,animation:"fadeInUp 0.5s "+(i*0.1)+"s ease backwards"}},
+e("p",{style:S.boardName},m.name),e("p",{style:S.boardRole},m.role),e("p",{style:S.boardMsg},'"'+m.msg+'"')
+))
+);
+}
+
+return e("div",{style:S.root},
+confettiEls,toast,
+// Header
+e("header",{style:S.header},
+e("div",{style:S.headerInner},
+e("div",null,e("h1",{style:S.title},"Project Delulu"),e("p",{style:S.subtitle},"The Great Lock-In")),
+e("div",null,e("div",{style:S.dayBadge,onClick:cycleAffirmation},e("span",{style:S.dayBadgeNum},"Day "+Math.min(currentDayNumber,42)),e("span",{style:S.dayBadgeSub},"of 42")))
+),
+e("div",{style:S.sprintBarTrack},e("div",{style:{...S.sprintBarFill,width:(sprintProgress*100)+"%"}})),
+e("div",{style:S.sprintMeta},e("span",{style:S.sprintMetaText},daysRemaining+" days remaining"),e("span",{style:S.sprintMetaText},Math.round(sprintProgress*100)+"% through"))
+),
+// Nav
+e("nav",{style:S.nav},[{key:"today",label:"Today"},{key:"weekly",label:"Weekly"},{key:"goals",label:"Goals"},{key:"browse",label:"Browse"},{key:"trophies",label:"Trophies"}].map(tab=>
+e("button",{key:tab.key,className:"tab-btn",onClick:()=>setActiveTab(tab.key),style:{...S.tabBtn,...(activeTab===tab.key?S.tabBtnActive:{})}},tab.label)
+)),
+// Content
+e("main",{style:S.main},content),
+// Footer
+e("footer",{style:S.footer},e("p",{style:S.footerText},"High Agency. Speed of Action. Addicted to Failing."),e("p",{style:S.footerSub},"Mar 16 \u2014 Apr 26, 2026"))
+);
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(e(App));
+</script>
+</body>
+</html>
