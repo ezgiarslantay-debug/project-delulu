@@ -1,3 +1,407 @@
+
+I want to create an interactive "Project Delulu Bootcamp builder" that feels like browsing a beautiful, high-end boutique, but for life experiences instead of products.
+The concept: Transform "google drive sheets list" into something more joyful. Instead of just a normal list, I want an experience.
+Design: This needs to look like a world-class iOS app. Clean, intentional graphic design. Every detail (typography, spacing, hierarchy) should feel curated and thought-through. The end result should be stunning. also add % of accomplish trackers etc.
+Include:  toggles between browsing and viewing saved items, satisfying interactions when selecting items. All the daily stuff to be accomplished as well as bootcamp-long goals need to be viewed. 
+Populate it with beautiful life experiences to browse. Then, add in some additional fun surprises!
+
+Source:
+https://docs.google.com/spreadsheets/d/1bcJm7uksz3Wo63EDSv3OmuGQhlDn7o1D/edit?usp=sharing&ouid=100095759976018268689&rtpof=true&sd=true
+
+Show more
+Mar 12
+
+Strategized fetching spreadsheet data to architect premium iOS-inspired bootcamp experience
+Strategized fetching spreadsheet data to architect premium iOS-inspired bootcamp experience
+Let me grab your spreadsheet data and the design skill, then build something gorgeous for you.
+
+
+Architected luxury boutique app transforming spreadsheet into curated life experience tracker
+Architected luxury boutique app transforming spreadsheet into curated life experience tracker
+Got the data. I can see the full tracker structure: daily habits (Wake 7am, Jackie HQ, Meditation, Walk, Yoodli, Italian, Outreach, Applications, Content, AI Session, No Carbs & Sugar), spanning Mar 16 to Apr 26. Now let me build something that makes this spreadsheet look like it belongs in a museum.
+
+
+Synthesized design vision with functional bootcamp tracking experience
+Synthesized design vision with functional bootcamp tracking experience
+Here's your Project Delulu Bootcamp Builder. Five tabs, zero spreadsheet energy.
+
+Today gives you a scrollable date picker, a progress ring that fills as you tap habits off, and every daily task from your tracker organized by category (Morning Rituals, Mind, Body, Career, Creative). Weekends automatically hide Outreach and Applications. Tapping a habit fires a little confetti burst because dopamine is free.
+
+Weekly shows all six weeks as progress cards with color-coded day dots. Tap any day to jump straight to its checklist. The dark "Bootcamp Totals" card at the bottom tracks your overall completion rate and perfect days count.
+
+Goals has all eight bootcamp-long targets with adjustable sliders. Tap any progress number to reveal the slider and update where you are.
+
+Browse is the Experience Boutique: 16 hand-written experiences (from "The Cold Pitch" to "Cook Something Ridiculous") with category filters, difficulty tags, time estimates, and a heart button to save favorites. Toggle between browsing and your saved collection.
+
+Trophies has seven milestone achievements that unlock as you stack perfect days, plus a "From Jackie's Desk" affirmation card you can tap to cycle through, and your full Board of Directors with their custom titles and personalized messages.
+
+The March 28 checkpoint is marked directly on the sprint progress bar. Tap the Day badge in the header for a random affirmation toast.
+
+Project delulu bootcamp
+Code · JSX 
+I really really liked it. thanks. the only thing I want to change is: starts at march 16 and ends Apr 26. the number of days and and remaning etc is correct right? no need to mark march 28 for mid-check.
+
+one other question how can I use that? how can I get this out of claude and start inputting my progress?
+
+Mar 12
+
+Recalculated sprint dates and verified day count accuracy
+Recalculated sprint dates and verified day count accuracy
+Two things: the fix, and the "how do I actually use this" answer.
+
+To use it right now: Open the artifact in full screen (the expand icon in the top right of the preview). It works as a fully interactive app right here in Claude. You can tap habits, adjust goal sliders, browse experiences, save favorites. The catch is that your progress resets if you close the conversation, since it lives in-memory.
+
+To use it permanently: Copy the code, drop it into a free React hosting tool like Lovable, bolt.new, or v0.dev. Paste it in, hit deploy, and you'll have a live URL you can bookmark on your phone's home screen. It'll feel exactly like a native app. If you want persistent data (so your check-offs survive between sessions), I can add local storage or connect it to a simple backend. Just say the word.
+
+Now let me fix the dates and remove that checkpoint marker:
+
+
+Finalized date adjustments and prepared file for user input
+Finalized date adjustments and prepared file for user input
+All updated. March 16 through April 26, 42 days total. The checkpoint marker is gone, achievements are recalibrated (halfway is now day 21, final push at day 36, LOCKED IN at 42), and all the remaining-days math adjusts automatically based on today's date.
+
+The quickest path to making this a daily-use app on your phone: copy the code, paste it into bolt.new, and you'll have a live URL in about 90 seconds. Add it to your home screen and it'll open like a native app. If you want your progress to actually save between sessions, come back here and I'll wire up persistent storage so nothing gets lost when you close the tab.
+
+Project delulu bootcamp
+Code · JSX 
+can I make it free via github or smth?
+
+Mar 12
+
+Evaluated free hosting solutions for React deployment
+Evaluated free hosting solutions for React deployment
+Absolutely. Here's the free route, no credit card required:
+
+The GitHub Pages method (100% free, forever):
+
+Create a free GitHub account if you don't have one
+Go to github.com/new and create a repository called something like project-delulu
+The tricky part: GitHub Pages serves static HTML, and your file is React/JSX, so it needs a build step first
+The faster, honestly easier free option is this:
+
+Use StackBlitz or CodeSandbox:
+
+Go to either site, sign in with your GitHub account
+Create a new React project
+Replace the main component file with your code
+It gives you a live URL instantly, free, and your data persists in the browser
+Or the smoothest path of all, Vercel:
+
+Sign up free with your GitHub account
+Create a new project, pick the "React" template
+Paste your component code into the main file
+Hit deploy. Done. You get a free .vercel.app URL
+Bookmark that on your phone's home screen and it opens like a native app
+Vercel is what I'd actually recommend. It's free for personal projects, deploys in under a minute, and the URL is permanent. You can even connect a custom domain later if you want projectdelulu.com (domains run about $10/year).
+
+One thing to flag: right now your progress lives in memory only, so it resets when you close the tab. Want me to add persistent storage to the code before you deploy? That way your check-offs, goal slider positions, and saved experiences all survive between sessions. Takes me about two minutes to wire up.
+
+didnt understand the step by step process via vercel and github
+
+loged in both but tell me step by step where to put code etc
+
+Mar 12
+
+Orchestrated concrete walkthrough for Vercel-GitHub deployment process
+Orchestrated concrete walkthrough for Vercel-GitHub deployment process
+OK, here's the exact walkthrough. I'm going to assume you have both tabs open right now.
+
+Step 1: Set up the project on your computer
+
+You actually don't even need to do this. Vercel has a faster path. Here's what to do:
+
+Step 1: Go to Vercel
+
+Go to vercel.com/new
+You should see a page that says "Let's build something new"
+Under "Clone Template", look for Next.js and click it (this is just the container, don't worry about the name)
+Step 2: Create the repo
+
+Vercel will ask you to create a Git Repository
+It should show your GitHub account connected
+Under "Repository Name" type: project-delulu
+Click Create
+Wait about 30 seconds. It will build and deploy a starter template. You'll see a "Congratulations!" screen. Ignore that for now.
+Step 3: Go to your new GitHub repo
+
+Open a new tab
+Go to github.com/YOUR-USERNAME/project-delulu
+You'll see a bunch of files. Click into the folder called app
+Find the file called page.tsx (or page.js)
+Click on that file
+Click the pencil icon (top right of the file) to edit it
+Step 4: Replace the code
+
+Select ALL the text in that file (Ctrl+A or Cmd+A)
+Delete it
+Now go back to Claude, open the artifact I made, click the Copy button
+Paste the entire code into that GitHub file
+Step 5: Small tweak needed
+
+At the very top of the file, you need to add this single line ABOVE everything else:
+"use client";
+So the first two lines of your file should look like:
+"use client";
+import { useState, useEffect, useRef, useCallback } from "react";
+Step 6: Save it
+
+Scroll down and click the green Commit changes button
+In the popup, just click Commit changes again
+Step 7: Watch the magic
+
+Go back to your Vercel tab
+Vercel automatically detects the change and rebuilds
+Wait about 60 seconds
+Your site will be live at something like project-delulu.vercel.app
+Step 8: Put it on your phone
+
+Open that URL on your phone in Safari or Chrome
+On iPhone: tap the Share button, then "Add to Home Screen"
+On Android: tap the three dots menu, then "Add to Home Screen"
+Now it opens like a real app. No app store needed.
+One heads-up: if the build throws any errors after you paste the code, screenshot it and send it to me here. I'll tell you exactly what to fix. These things sometimes need a tiny adjustment depending on the template version.
+
+And the persistent storage question still stands. Right now your check-offs disappear when you close the tab. Want me to bake in storage so your progress actually saves?
+
+stuck at step 3
+
+Mar 12
+
+Pivoted toward simplifying deployment with self-contained HTML solution
+Pivoted toward simplifying deployment with self-contained HTML solution
+OK, I see where you are. That's an empty repo. Let me scrap the complicated route and give you the dead-simple version instead. I'm going to create one single HTML file that contains everything. No build steps, no Next.js, no terminal commands.
+
+
+Devised GitHub Pages deployment instructions with persistent storage
+Devised GitHub Pages deployment instructions with persistent storage
+I rebuilt the whole thing as a single HTML file. No React setup, no terminal, no build steps. And I baked in persistent storage, so your progress saves automatically between sessions.
+
+Here's exactly what to do from the screen you're on right now:
+
+Step 1: On that page, click the blue link that says "creating a new file"
+
+Step 2: In the "Name your file" box at the top, type exactly: index.html
+
+Step 3: In the big empty code editor below, paste the entire contents of the HTML file I just made. (Open it, hit the copy button, go back to GitHub, paste.)
+
+Step 4: Scroll down, click the green "Commit changes" button
+
+Step 5: You'll be back on your repo page and you should see the index.html file listed. Now click Settings (the tab in the top menu bar, far right)
+
+Step 6: In the left sidebar, click Pages
+
+Step 7: Under "Branch", change the dropdown from "None" to "main", then click Save
+
+Step 8: Wait about 60 seconds, then refresh that page. A green box will appear with your live URL. It'll be something like: ezgiarslantay-debug.github.io/project-delulu
+
+Step 9: Open that URL on your phone, tap Share, "Add to Home Screen." Done. It's an app now.
+
+Your check-offs, goal progress, and saved experiences all persist between sessions thanks to localStorage. Close the tab, come back tomorrow, everything's still there.
+
+Index
+Code · HTML 
+got it
+İt is live.
+
+how do I add this to my iphone 13 pro max like an app
+
+Mar 12
+
+Identified request to install GitHub Pages site as iPhone home screen app
+Identified request to install GitHub Pages site as iPhone home screen app
+Here's your 30-second guide:
+
+Open Safari on your iPhone (this only works in Safari, not Chrome)
+Go to your live URL (the ezgiarslantay-debug.github.io/project-delulu one)
+Tap the Share button at the bottom of the screen (the little square with an arrow pointing up)
+Scroll down in that menu until you see "Add to Home Screen" and tap it
+It'll show you a preview. You can rename it to just "Project Delulu" if you want. Then tap Add in the top right
+That's it. It'll show up on your home screen looking like any other app. When you tap it, it opens full screen with no Safari address bar, no tabs, nothing. Just your bootcamp tracker.
+
+One small thing worth knowing: since your data saves in Safari's storage, don't clear your Safari website data in Settings or you'll lose your check-offs. Everything else (closing the app, restarting your phone, using it offline after the first load) is totally fine.
+
+Now go check off Day 1.
+
+Rewire your brain. If you've been here before, you know the drill. There are five key categories that we need to tackle in order to rewire your brain towards abundance:
+1. Exposure to discomfort
+2. Abundant mindset
+3. More confidence in yourself
+4. A bias towards action
+5. A relaxed nervous system
+ If that feels overwhelming, don't worry. I'm going to give you an exercise in each of these categories that you can plan into each day to make sure that you are making progress towards those in a way that doesn't feel overwhelming or overbearing. All right, let's get on to the exercises. Ideally, say this video and take out a notepad so you can actually write these into your week schedule to make sure that they get done. The first one is the daily voluntary discomfort activity. Now, if you're new here, the reason we do this is because the more difficult and scary things you do, the less difficult and scary things there are. Building up your baseline tolerance to discomfort is one of the biggest life hacks you can have, because things that used to be difficult will now be extremely easy, and you literally unlock whole new possibilities for yourself. The way we do this is by micro-exposures to discomfort through your day-to-day life. Think cold shower, exercise, being bored. There are so many different things you can do. If you've been doing the challenge so far, once again I recommend that you increase the duration and volume or intensity of what you were already doing. Let's say you were spending the first 10 minutes of the morning without your phone; now make it 15 and make it the 15 minutes before you go to bed as well. Maybe, as cold showers, you can add along some sort of boredom ritual to that. The point is to pick something that is genuinely uncomfortable, not dangerous, of course, but just something where it's like, "Oh, I feel a little antsy. I wanna do something to fill my mind." You're gonna not do that. If you've already been doing something, continue doing it, but I have two bonus options for you as well.
+1. One is to pick a task to add friction to, so doing math without calculators, writing without AI, driving without your GPS. Our world is built to be as convenient as humanly possible, and if you can take one of those tasks and try and do it the old-fashioned way, where you actually require more of your brain, you're adding unnecessary friction, sure, but it's highly beneficial for your brain. Not only does it make you use those neural pathways and reintegrate with that critical thinking part of your brain, but it also is boring and uncomfortable. If you can do it enough times without the aid, when you have the aid to do it, you're already light years ahead.
+2. Bonus number two, huge fan of this one. I say that sarcastically because it kinda sucks, but it's a game changer. Ten minutes of staring at the wall daily. Now this is tapping heavily into the boredom discomfort thing, but I said this in a previous video recently. If you can withstand it's gonna suck at first, and then your brain's gonna start coming up with new ideas. You're gonna start feeling more stimulated. You're gonna start to get back in touch with yourself, because we have so much noise all the time. We never actually do this. Alright, up next we're targeting your abundance mindset and what you are to start expecting miracles and abundance. Start a note app in your phone, and anytime anything amazing or miraculous or abundant happens in your life, I want you to write it down. I want to encourage you to write down even really small things, like:
+* I turned on the tap, and hot water came out.
+* I got on my computer, and I was immediately connected to the rest of the world.
+* That person didn't cut me off today when I thought that we're going to somebody held the door for me.
+ I don't care how small they are. Your brain looks for what you train us to look for. If instead of noticing all the difficult things, all the bad things, all the things that are working against you, you notice all the amazing, miraculous things that are part of us being alive on this wonderful earth, that is what you're going to see. Everything you can think of, write it down. You are training your brain in the best possible way. Two affirmations I really like:
+* Everything always works out for me.
+* The universe is conspiring to help me.
+ Write these on sticky notes. Save them as your lock screen. Say them in the morning, say them at night. Anytime anything is happening that you're not sure about, say, "Everything always works out for me. The universe is conspiring to help me." Your brain doesn't know the difference between reality and thought, and so if you can think these things enough, your brain will start to believe they're true. The universe will start presenting evidence to confirm this fact. It is wildly magical. And then kind of a bonus exercise I really like for anything that goes wrong in your life, any discomfort, any rejection, any redirection, anything, "Oh my god, why did that happen?" I need you to write down three reasons why it might actually be a good thing, because most of the time things are working in our favor. We're being saved from things that would actually do us harm in the long run, or we're being saved for something that's even better. Favor and anything that goes wrong, there's a good reason for it, and you can look for it. You're going to be a million times happier, and again, so many more opportunities will open up for you. Like, our fabric of reality is malleable, and if you can train your brain to look at it differently, your experience can be 100% different.
+All right, on to confidence. I want you to complete a project, and this aligns with another affirmation I really like: I do what I say I'm going to do. A lot of times we have big open loops where we have started a project and not finished it. We've built an identity in our brain as somebody who does not complete projects, and that is not the confident state. Whether it's a task or some admin work you've been putting off, or something for work, or a passion project, pick one that you can complete this week and make a strong, strategic game plan to complete it. Don't make it too overwhelming, where it's going to take up all of your time. Most of the time, things take way less time than we actually expect them to finish. If you can start changing that narrative to the fact that you're a person who does what they say they're going to do and you have completed projects, your confidence will skyrocket. I can promise you that.
+Now we're going to talk about building a bias towards action, because a lot of people, myself included, if you're kind of anxious and prone to overthinking, you have a bias towards inaction. One of the most key points of being a successful person is being able to have an idea and take action on it as quickly as possible. In order to develop more of our bias towards action, I want you to remember this one phrase: follow the plan, not your mood. As you're building out your plan for the week with all of these other assignments, there are going to be days where you don't feel like doing them. That is not going to guide your actions; the plan is going to guide your actions. This will take time; this is the habit you build up over time, but it's a good way to frame things.
+Something else I really like to remember is that you're literally an avatar. You don't have to feel like doing something to do it. You are living inside of this body, and outside of extenuating circumstances, you can make your body do things you want it to do. Like, you don't have to want to go to the gym, but you can get yourself up and go to the gym. Most of the time, you're not going to want to do the hard things, but you're going to 100% benefit from doing them, and they're going to be so grateful that you did. Follow the plan, not your mood, and remember that you are an avatar.
+All right, and then now for your nervous system. I want you to do some breathing exercises. There's something very simple called the physiological sigh, which is two quick inhales and then a longer exhale. You're going to do it right now, because I'm still very congested, but in a situation where you're feeling very anxious, where you feel kind of panicky, that's a great way to actually calm down your nervous system, a little bit, slow down your heart rate, slow down your breathing. Use this as a tool anytime you're feeling kind of anxious in day-to-day life.
+I highly recommend that you look up Wim Hof breathing on YouTube and do some of those exercises. If there's somebody who struggles with meditation or just sitting still time, this is a super effective way to do a more active meditation and get in touch with your body. Just look on YouTube, Wim Hof breathing, and you can watch those exercises and kind of do them with him. If you never explored breathwork, it is a super powerful medium, and it can work wonders for your nervous system.
+In summary, I've got a whole bunch of stuff laid out for you this week. 
+
+so these are the notes of a creator I follow in tiktok and I want to reorganize delulu web app accorsingly. So I need a proper revisited morning routine
+
+morning routine:
+wake up 7 am
+weight yourself
+coffee make
+10 min look at the mirror exercise
+750 words webpage writing with coffee
+20min meditation
+skincare
+makeup
+read the affirmations out loud
+
+food:
+eat 2 boiled eggs per day
+eat no carbs, no alchol, no sweet 
+
+during the day:
+adhoc: whenever good/abundance happens include in jackie HQ
+italian duolingo 20mins perday
+
+start the new app from march 18 and run it for 30 days
+
+everyday: apply 5 to the point jobs, reach out 5 people thoughtful direct outreaches
+
+at the end of the challange: 20hours of Yoodli interview, 30 different tiktok content, weekly 3 hours of pilates and 3 hours of power walks, lose 5kg, get 3 job interviews (not only intro type no JD meetings)
+
+ the trackers incl %, trophy case, browse tap, etc is not applicable. the % trackers should work per objective or activity not per day basis because me completing italian study at a specific day doesnot mean I completed 8% of that day work but shows within the challange I have completed % of italian studies type of tracker.
+
+Show less
+5:04 PM
+
+Architected comprehensive 30-day challenge app restructure with integrated habit tracking
+Architected comprehensive 30-day challenge app restructure with integrated habit tracking
+Got it. Completely different structure. Let me rebuild from scratch with the new routine, 30-day window starting March 18, and challenge-wide progress tracking instead of per-day percentages.
+
+
+Synthesized brain-rewiring framework into personalized 30-day challenge structure
+Synthesized brain-rewiring framework into personalized 30-day challenge structure
+Completely rebuilt from scratch. Here's what changed:
+
+Today tab now has your actual morning routine in order: wake 7am, weigh yourself, make coffee, 10 min mirror exercise, 750 words morning writing, 20 min meditation, skincare, makeup, read affirmations out loud. Below that, Food Rules (2 boiled eggs, no carbs, no alcohol, no sweets). Below that, Daily Work (Italian Duolingo 20 min, 5 job applications, 5 direct outreaches).
+
+Progress tab is split into two sections. "Big Goals" are the challenge-wide targets you manually update with sliders: 20 hours Yoodli, 30 TikToks, 12 hours pilates, 12 hours power walks, 5kg weight loss, 3 real job interviews. "Daily Habit Consistency" auto-calculates from your daily check-offs: it counts how many days you did Italian, meditation, writing, mirror exercise, and clean eating out of 30, plus total job apps and outreaches (days checked x 5). So checking off "Italian" on 15 days shows 15/30 = 50%, not a daily percentage.
+
+Jackie HQ tab is your abundance journal. Write down every good thing that happens, however small. The affirmation card is right there too.
+
+Browse and Trophies stay the same, but the experiences now include the brain-rewiring ones from that creator's video (wall staring, math without calculator, driving without GPS, Wim Hof breathing, physiological sigh walk, the "3 reasons it's a gift" reframe).
+
+Dates: March 18 through April 16, 30 days. Everything saves to localStorage.
+
+To update your live site: go to your GitHub repo, click index.html, click the pencil to edit, select all, delete, paste this new version, commit. Takes 60 seconds to go live.
+
+Index
+Code · HTML 
+I need to be able to log these below:
+
+Big Goals
+🎤
+Yoodli interview practice
+0 / 20 hours0%
+📱
+TikTok content created
+0 / 30 videos0%
+🧘
+Pilates sessions
+0 / 12 hours0%
+🚶‍♀️
+Power walks
+0 / 12 hours0%
+⚖️
+Weight lost
+0 / 5 kg0%
+🎯
+Real job interviews booked
+
+will u unlock those automatically:
+
+Trophy Case
+Milestones unlocked along the way.
+🩸
+First Blood
+Complete your first full day
+
+Show more
+5:28 PM
+
+Clarified logging mechanics and trophy unlock automation
+Clarified logging mechanics and trophy unlock automation
+Both are already built in, they just might not be obvious on mobile. Let me explain:
+
+Big Goals: Tap the gold number that says "0 / 20 hours" (or whichever goal). A slider will appear underneath that goal, and you drag it to update your progress. Tap the number again to hide the slider. The percentage updates automatically.
+
+The tap target might be a bit small on your phone though. Want me to make it more obvious with a visible "update" button instead of the hidden tap-to-reveal slider?
+
+Trophy Case: Yes, those unlock automatically. They're tied to your "perfect days" count (days where you checked off every single item in the Today tab). So once you complete 1 full day, "First Blood" unlocks. After 3 perfect days, "Hat Trick" unlocks. And so on up to all 30 days for "LOCKED IN."
+
+The trophies go from greyed out and faded to full color with a golden glow when they unlock. You don't need to do anything manually.
+
+Q: Want me to make the Big Goals easier to update on mobile?
+A: Yes, make the whole card tappable to open the slider
+
+5:29 PM
+
+Devised streamlined interaction by expanding clickable interface area
+Devised streamlined interaction by expanding clickable interface area
+Quick fix. I'll make the entire goal card tappable to open/close the slider.
+
+
+Implemented interactive card mechanics for mobile goal updates
+Implemented interactive card mechanics for mobile goal updates
+Done. Now you can tap anywhere on the entire goal card to open the slider, and tap again to close it. Dragging the slider won't accidentally close the card either (I added a stop so those touches stay on the slider).
+
+Same update process: go to your GitHub repo, click index.html, pencil icon, select all, delete, paste this new version, commit. Should be live in about a minute.
+
+Index
+Code · HTML 
+perfect, now how can I get this live at the same URL via my github
+
+5:45 PM
+
+Assessed GitHub Pages deployment prerequisites and next steps
+Assessed GitHub Pages deployment prerequisites and next steps
+Same steps as before, just replacing the file:
+
+Go to github.com/ezgiarslantay-debug/project-delulu
+Click on index.html (you should see it listed)
+Click the pencil icon (top right of the file, "Edit this file")
+Ctrl+A (or Cmd+A on Mac) to select everything in the editor
+Delete it all
+Come back here, open the artifact, click Copy
+Go back to GitHub, paste into the empty editor
+Scroll down, click green Commit changes button, then Commit changes again in the popup
+Give it about 60 seconds and refresh your live URL. The new version will be there with the tappable goal cards.
+
+could not find it Click the pencil icon (top right of the file, "Edit this file")
+
+5:53 PM
+
+Investigated GitHub UI variations to locate file editing interface
+Investigated GitHub UI variations to locate file editing interface
+It might look slightly different now. Try this:
+
+After clicking on index.html, look at the top right area just above your code
+You should see a row of small icons. Look for either a pencil icon directly, OR a button that says "Edit" with a small dropdown arrow next to it
+If you see the dropdown arrow, click it and choose "Edit in place"
+If you still can't find it, can you screenshot what you see after clicking on index.html? I'll point you to the exact spot.
+
+
+
+
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+Index · HTML
+Copy
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,19 +415,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',-apple-system,sans-serif;background:linear-gradient(180deg,#FAF7F4 0%,#F5EDE4 100%);color:#2C2520;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',-apple-system,sans-serif;background:linear-gradient(180deg,#FAF7F4 0%,#F5EDE4 100%);color:#2C2520;-webkit-font-smoothing:antialiased;min-height:100vh}
 ::-webkit-scrollbar{width:0;height:0}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes popIn{0%{transform:scale(0.8);opacity:0}60%{transform:scale(1.05)}100%{transform:scale(1);opacity:1}}
 @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(120px) rotate(720deg);opacity:0}}
-input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:#E8E0D8;outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#D4A574;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.15)}
-.habit-toggle{transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1)}
-.habit-toggle:active{transform:scale(0.95)}
+.habit-toggle{transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1)}.habit-toggle:active{transform:scale(0.95)}
 .tab-btn{transition:all 0.25s ease}
 .exp-card{transition:all 0.3s ease}
+input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:#E8E0D8;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#D4A574;cursor:pointer;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,0.15)}
+textarea{font-family:'DM Sans',-apple-system,sans-serif;resize:none;border:1.5px solid #E8E0D8;border-radius:12px;padding:12px;font-size:14px;color:#2C2520;background:#fff;outline:none;width:100%}
+textarea:focus{border-color:#D4A574}
 </style>
 </head>
 <body>
@@ -31,417 +435,412 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;heigh
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script>
-const e=React.createElement,{useState,useEffect,useCallback}=React;
-
-const DAILY_HABITS=[
-{id:"wake",label:"Wake 7am",icon:"\u2600\uFE0F",subtitle:"Rise with intention",category:"ritual"},
-{id:"jackie",label:"Jackie HQ",icon:"\uD83D\uDC51",subtitle:"Step into HER",category:"ritual"},
-{id:"meditation",label:"Meditation",icon:"\uD83E\uDDD8\u200D\u2640\uFE0F",subtitle:"30 minutes",category:"mind"},
-{id:"walk",label:"Walk",icon:"\uD83D\uDEB6\u200D\u2640\uFE0F",subtitle:"1 hour",category:"body"},
-{id:"yoodli",label:"Yoodli Practice",icon:"\uD83C\uDF99\uFE0F",subtitle:"1 hour BLUF drills",category:"career"},
-{id:"italian",label:"Italian",icon:"\uD83C\uDDEE\uD83C\uDDF9",subtitle:"30 minutes",category:"mind"},
-{id:"outreach",label:"LinkedIn Outreach",icon:"\uD83D\uDCAC",subtitle:"5 connections",category:"career",weekdayOnly:true},
-{id:"applications",label:"Job Applications",icon:"\uD83D\uDCE8",subtitle:"10 applications",category:"career",weekdayOnly:true},
-{id:"content",label:"Content Created",icon:"\uD83C\uDFAC",subtitle:"TikTok / Substack",category:"creative"},
-{id:"ai",label:"AI Deep Work",icon:"\uD83E\uDD16",subtitle:"2 hour session",category:"career"},
-{id:"nocarbs",label:"No Carbs & Sugar",icon:"\uD83E\uDD57",subtitle:"Clean fuel only",category:"body"}
+const h=React.createElement,{useState,useEffect}=React;
+ 
+const START=new Date(2026,2,18),END=new Date(2026,3,16),TOTAL_DAYS=30;
+function genDays(){const d=[];let c=new Date(START);while(c<=END){d.push(new Date(c));c.setDate(c.getDate()+1)}return d}
+const ALL_DAYS=genDays();
+function dayNum(d){return Math.floor((d-START)/864e5)+1}
+function dk(d){return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+function fmtDate(d){return d.toLocaleDateString("en-US",{month:"short",day:"numeric"})}
+function fmtDay(d){return d.toLocaleDateString("en-US",{weekday:"short"})}
+function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+ 
+const MORNING=[
+{id:"wake",label:"Wake up 7am",icon:"\u2600\uFE0F"},
+{id:"weigh",label:"Weigh yourself",icon:"\u2696\uFE0F"},
+{id:"coffee",label:"Make coffee",icon:"\u2615"},
+{id:"mirror",label:"10 min mirror exercise",icon:"\uD83E\uDE9E"},
+{id:"write",label:"750 words morning writing",icon:"\u270D\uFE0F"},
+{id:"meditate",label:"20 min meditation",icon:"\uD83E\uDDD8\u200D\u2640\uFE0F"},
+{id:"skincare",label:"Skincare",icon:"\u2728"},
+{id:"makeup",label:"Makeup",icon:"\uD83D\uDC84"},
+{id:"affirm",label:"Read affirmations out loud",icon:"\uD83D\uDCAB"}
 ];
-
-const BOOTCAMP_GOALS=[
-{id:"g1",label:"Land 3+ final-round interviews",target:3,icon:"\uD83C\uDFAF"},
-{id:"g2",label:"200+ LinkedIn connections made",target:200,icon:"\uD83E\uDD1D"},
-{id:"g3",label:"300+ job applications sent",target:300,icon:"\uD83D\uDCEC"},
-{id:"g4",label:"Publish 12 TikToks",target:12,icon:"\uD83D\uDCF1"},
-{id:"g5",label:"Complete Italian A1 module",target:100,icon:"\uD83C\uDDEE\uD83C\uDDF9"},
-{id:"g6",label:"Yoodli score above 80",target:80,icon:"\uD83C\uDFA4"},
-{id:"g7",label:"30-day meditation streak",target:30,icon:"\u2728"},
-{id:"g8",label:"Publish 4 Substack essays",target:4,icon:"\u270D\uFE0F"}
+ 
+const FOOD=[
+{id:"eggs",label:"2 boiled eggs",icon:"\uD83E\uDD5A"},
+{id:"nocarbs",label:"No carbs",icon:"\uD83D\uDEAB"},
+{id:"noalc",label:"No alcohol",icon:"\uD83C\uDF77"},
+{id:"nosweet",label:"No sweets",icon:"\uD83C\uDF6C"}
 ];
-
-const EXPERIENCE_CATEGORIES=["All","Career Moves","Body & Mind","Creative Life","Pure Joy"];
-
-const EXPERIENCES=[
-{id:"e1",title:"The Cold Pitch",desc:"Send a bold DM to someone you admire at a company you want. Not a template. A real, specific, slightly audacious message.",category:"Career Moves",vibe:"high agency",time:"15 min",difficulty:"Medium"},
-{id:"e2",title:"The Rejection Collector",desc:"Apply to 3 roles that feel slightly above your level. The goal is the application itself, not the outcome. Stack proof that you tried.",category:"Career Moves",vibe:"addicted to failing",time:"2 hrs",difficulty:"Easy"},
-{id:"e3",title:"Sunrise Walk & Voice Note",desc:"Leave the house before 7:30am. Walk for 40 minutes. Record a voice note to yourself about what you actually want, no filters.",category:"Body & Mind",vibe:"grounding",time:"1 hr",difficulty:"Easy"},
-{id:"e4",title:"The 20-Minute Italian Caf\u00E9",desc:"Go to a caf\u00E9, order in Italian (even badly), and spend 20 minutes journaling in Italian. Embarrassment is the price of fluency.",category:"Pure Joy",vibe:"speed of action",time:"45 min",difficulty:"Medium"},
-{id:"e5",title:"Film Your Worst Take",desc:"Record a TikTok that you think is terrible. Post it anyway. The algorithm doesn't care about your perfectionism.",category:"Creative Life",vibe:"addicted to failing",time:"30 min",difficulty:"Hard"},
-{id:"e6",title:"The Board Meeting",desc:"Sit with your journal and write a letter FROM one of your Board of Directors (Michelle Obama, Emma Grede, Jennifer Lawrence, Dr. Joe Dispenza) TO you. What would they say about this week?",category:"Body & Mind",vibe:"identity work",time:"30 min",difficulty:"Easy"},
-{id:"e7",title:"Mock Interview Gauntlet",desc:"Do 3 back-to-back Yoodli sessions. First one: warm-up. Second: record and review. Third: nail the BLUF.",category:"Career Moves",vibe:"speed of action",time:"2 hrs",difficulty:"Hard"},
-{id:"e8",title:"The Matter Draft Sprint",desc:"Set a 45-minute timer. Write 800 words for The Matter. No editing. No backspace. Just forward motion.",category:"Creative Life",vibe:"high agency",time:"45 min",difficulty:"Medium"},
-{id:"e9",title:"Pilates & Visualization",desc:"During your next Pilates session, spend the last 5 minutes in shavasana visualizing yourself in the VP role. Where's the office? What are you wearing? Who calls you first?",category:"Body & Mind",vibe:"manifestation",time:"1 hr",difficulty:"Easy"},
-{id:"e10",title:"The Amsterdam Scroll",desc:"Spend 30 minutes researching a specific Amsterdam neighborhood where you could live. Look at apartments. Find the nearest tennis court. Make it feel real.",category:"Pure Joy",vibe:"high agency",time:"30 min",difficulty:"Easy"},
-{id:"e11",title:"Salary Research Hour",desc:"Look up exact compensation data for VP Growth/Marketing roles at 5 companies you'd actually want to work at. Know your number.",category:"Career Moves",vibe:"high agency",time:"1 hr",difficulty:"Medium"},
-{id:"e12",title:"Tennis Content Deep Dive",desc:"Watch one full match. Take notes like a commentator would. Record your hot takes. This is your Eurosport audition tape.",category:"Creative Life",vibe:"creative joy",time:"3 hrs",difficulty:"Easy"},
-{id:"e13",title:"The Dopamine Reset",desc:"One full evening with no phone, no laptop, no screens. Just music, cooking, stretching, and being. Boredom is where ideas live.",category:"Body & Mind",vibe:"grounding",time:"4 hrs",difficulty:"Hard"},
-{id:"e14",title:"Secret LinkedIn Article",desc:"Write a LinkedIn post about something you learned from the Advidi rejection. Don't publish it (yet). Sit with the vulnerability for 24 hours.",category:"Career Moves",vibe:"radical authenticity",time:"1 hr",difficulty:"Medium"},
-{id:"e15",title:"The Lucky Girl Walk",desc:"Go for a walk with one rule: say yes to every impulse. Turn left? Sure. Go into that shop? Why not. This is about trusting your instincts.",category:"Pure Joy",vibe:"manifestation",time:"1 hr",difficulty:"Easy"},
-{id:"e16",title:"Cook Something Ridiculous",desc:"Pick one Italian recipe that feels ambitious. Attempt it. Take photos. The mess is the content.",category:"Pure Joy",vibe:"creative joy",time:"2 hrs",difficulty:"Medium"}
+ 
+const DAILY=[
+{id:"italian",label:"Italian Duolingo 20 min",icon:"\uD83C\uDDEE\uD83C\uDDF9"},
+{id:"jobs",label:"5 job applications",icon:"\uD83D\uDCE8"},
+{id:"outreach",label:"5 direct outreaches",icon:"\uD83D\uDCAC"}
 ];
-
+ 
+const CHALLENGE_GOALS=[
+{id:"yoodli",label:"Yoodli interview practice",target:20,unit:"hours",icon:"\uD83C\uDFA4",step:0.5},
+{id:"tiktok",label:"TikTok content created",target:30,unit:"videos",icon:"\uD83D\uDCF1",step:1},
+{id:"pilates",label:"Pilates sessions",target:12,unit:"hours",icon:"\uD83E\uDDD8",step:0.5},
+{id:"walks",label:"Power walks",target:12,unit:"hours",icon:"\uD83D\uDEB6\u200D\u2640\uFE0F",step:0.5},
+{id:"weight",label:"Weight lost",target:5,unit:"kg",icon:"\u2696\uFE0F",step:0.1},
+{id:"interviews",label:"Real job interviews booked",target:3,unit:"interviews",icon:"\uD83C\uDFAF",step:1}
+];
+ 
+const HABIT_TRACKERS=[
+{id:"italian",label:"Italian study days",target:TOTAL_DAYS,icon:"\uD83C\uDDEE\uD83C\uDDF9"},
+{id:"meditate",label:"Meditation days",target:TOTAL_DAYS,icon:"\uD83E\uDDD8\u200D\u2640\uFE0F"},
+{id:"write",label:"Morning writing days",target:TOTAL_DAYS,icon:"\u270D\uFE0F"},
+{id:"mirror",label:"Mirror exercise days",target:TOTAL_DAYS,icon:"\uD83E\uDE9E"},
+{id:"cleanfood",label:"Clean eating days",target:TOTAL_DAYS,icon:"\uD83E\uDD57"},
+{id:"jobs",label:"Total job apps (x5/day)",target:150,icon:"\uD83D\uDCE8"},
+{id:"outreach",label:"Total outreaches (x5/day)",target:150,icon:"\uD83D\uDCAC"}
+];
+ 
 const AFFIRMATIONS=[
+"Everything always works out for me.",
+"The universe is conspiring to help me.",
+"I do what I say I'm going to do.",
+"Follow the plan, not your mood.",
 "Jackie doesn't wait for permission.",
 "Your rejection data is someone else's dream resume.",
+"You are literally an avatar. Make the body move.",
 "The VP role is looking for you too.",
 "Today's messy action beats next week's perfect plan.",
-"Amsterdam is already expecting you.",
-"Your accent in Italian is charming, not embarrassing.",
-"Three principles: High Agency. Speed of Action. Addicted to Failing.",
-"The algorithm rewards courage, not polish.",
-"You've built companies from zero. A bootcamp is a warmup.",
-"HER doesn't snooze the alarm."
+"HER doesn't snooze the alarm.",
+"If you can withstand the boredom, ideas will come.",
+"Three reasons why that rejection was actually a gift.",
+"Amsterdam is already expecting you."
 ];
-
+ 
+const EXPERIENCES=[
+{id:"e1",title:"The Cold Pitch",desc:"Send a bold DM to someone you admire at a company you want. Not a template. A real, specific, slightly audacious message.",category:"Career Moves",vibe:"high agency",time:"15 min",difficulty:"Medium"},
+{id:"e2",title:"The Rejection Collector",desc:"Apply to 3 roles that feel slightly above your level. The goal is the application itself, not the outcome.",category:"Career Moves",vibe:"addicted to failing",time:"2 hrs",difficulty:"Easy"},
+{id:"e3",title:"10 Minutes at the Wall",desc:"Sit and stare at a wall for 10 minutes. No phone. No music. Let your brain get bored. That's where the ideas live.",category:"Nervous System",vibe:"discomfort",time:"10 min",difficulty:"Hard"},
+{id:"e4",title:"The 20-Minute Italian Caf\u00E9",desc:"Go to a caf\u00E9, order in Italian (even badly), and spend 20 minutes journaling in Italian.",category:"Pure Joy",vibe:"speed of action",time:"45 min",difficulty:"Medium"},
+{id:"e5",title:"Film Your Worst Take",desc:"Record a TikTok that you think is terrible. Post it anyway. The algorithm doesn't care about your perfectionism.",category:"Creative Life",vibe:"addicted to failing",time:"30 min",difficulty:"Hard"},
+{id:"e6",title:"The Board Meeting",desc:"Write a letter FROM one of your Board of Directors TO you. What would Michelle Obama, Emma Grede, Jennifer Lawrence, or Dr. Joe Dispenza say about this week?",category:"Mindset",vibe:"identity work",time:"30 min",difficulty:"Easy"},
+{id:"e7",title:"Math Without a Calculator",desc:"Add friction. Do your budget, tip calculations, or time zone math by hand. Force those neural pathways to wake up.",category:"Discomfort",vibe:"brain training",time:"15 min",difficulty:"Medium"},
+{id:"e8",title:"The Matter Draft Sprint",desc:"Set a 45-minute timer. Write 800 words for The Matter. No editing. No backspace. Just forward motion.",category:"Creative Life",vibe:"high agency",time:"45 min",difficulty:"Medium"},
+{id:"e9",title:"Pilates & Visualization",desc:"During your Pilates session, spend the last 5 minutes in shavasana visualizing yourself in the VP role. Where's the office? What are you wearing?",category:"Body & Mind",vibe:"manifestation",time:"1 hr",difficulty:"Easy"},
+{id:"e10",title:"The Physiological Sigh Walk",desc:"Go for a 20-minute walk. Every 5 minutes, do a physiological sigh: two quick inhales through the nose, one long exhale through the mouth.",category:"Nervous System",vibe:"grounding",time:"20 min",difficulty:"Easy"},
+{id:"e11",title:"Three Reasons It's a Gift",desc:"Think of the last thing that went wrong. Write down three reasons why it might actually be a good thing. Train your brain to find the upside.",category:"Mindset",vibe:"reframe",time:"10 min",difficulty:"Easy"},
+{id:"e12",title:"Drive Without GPS",desc:"Go somewhere you sort of know without using navigation. Get a little lost. Trust your sense of direction.",category:"Discomfort",vibe:"friction",time:"varies",difficulty:"Medium"},
+{id:"e13",title:"The Dopamine Reset",desc:"One full evening with no phone, no laptop, no screens. Just music, cooking, stretching, and being.",category:"Nervous System",vibe:"grounding",time:"4 hrs",difficulty:"Hard"},
+{id:"e14",title:"The Lucky Girl Walk",desc:"Go for a walk with one rule: say yes to every impulse. Turn left? Sure. Go into that shop? Why not.",category:"Pure Joy",vibe:"manifestation",time:"1 hr",difficulty:"Easy"},
+{id:"e15",title:"Cook Something Ridiculous",desc:"Pick one Italian recipe that feels ambitious. Attempt it. Take photos. The mess is the content.",category:"Pure Joy",vibe:"creative joy",time:"2 hrs",difficulty:"Medium"},
+{id:"e16",title:"Wim Hof Breathing Session",desc:"Look up Wim Hof breathing on YouTube. Follow along for one full session. More active than meditation, just as powerful.",category:"Nervous System",vibe:"breathwork",time:"15 min",difficulty:"Medium"}
+];
+ 
 const ACHIEVEMENTS=[
 {id:"a1",label:"First Blood",desc:"Complete your first full day",threshold:1,icon:"\uD83E\uDE78"},
-{id:"a2",label:"Hat Trick",desc:"3 perfect days in a row",threshold:3,icon:"\uD83C\uDFA9"},
-{id:"a3",label:"Week One Warrior",desc:"Survive the first 7 days",threshold:7,icon:"\u2694\uFE0F"},
-{id:"a4",label:"The Checkpoint",desc:"Reach day 13",threshold:13,icon:"\uD83C\uDFC1"},
-{id:"a5",label:"Halfway There",desc:"Day 21 of 42",threshold:21,icon:"\uD83C\uDF17"},
-{id:"a6",label:"The Final Push",desc:"Enter the last week",threshold:36,icon:"\uD83D\uDD25"},
-{id:"a7",label:"LOCKED IN",desc:"Complete all 42 days",threshold:42,icon:"\uD83D\uDD12"}
+{id:"a2",label:"Hat Trick",desc:"3 perfect days",threshold:3,icon:"\uD83C\uDFA9"},
+{id:"a3",label:"Week One Down",desc:"7 days done",threshold:7,icon:"\u2694\uFE0F"},
+{id:"a4",label:"Halfway There",desc:"15 days done",threshold:15,icon:"\uD83C\uDF17"},
+{id:"a5",label:"The Final Push",desc:"25 days done",threshold:25,icon:"\uD83D\uDD25"},
+{id:"a6",label:"LOCKED IN",desc:"All 30 days complete",threshold:30,icon:"\uD83D\uDD12"}
 ];
-
-const START_DATE=new Date(2026,2,16);
-const END_DATE=new Date(2026,3,26);
-
-function generateDays(){const days=[];let d=new Date(2026,2,16);while(d<=END_DATE){days.push(new Date(d));d.setDate(d.getDate()+1)}return days}
-const ALL_DAYS=generateDays();
-function getDayNumber(date){return Math.floor((date-START_DATE)/(1000*60*60*24))+1}
-function isWeekend(date){return date.getDay()===0||date.getDay()===6}
-function formatDate(date){return date.toLocaleDateString("en-US",{month:"short",day:"numeric"})}
-function formatDay(date){return date.toLocaleDateString("en-US",{weekday:"short"})}
-function isSameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
-function dateKey(d){return d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()}
-
-// localStorage helpers
-function loadJSON(key,fallback){try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch(e){return fallback}}
-function saveJSON(key,val){try{localStorage.setItem(key,JSON.stringify(val))}catch(e){}}
-
-function App(){
-const[activeTab,setActiveTab]=useState("today");
-const today=new Date();
-const closestDay=ALL_DAYS.reduce((prev,curr)=>Math.abs(curr-today)<Math.abs(prev-today)?curr:prev);
-const[selectedDate,setSelectedDate]=useState(closestDay);
-const[completions,setCompletions]=useState(()=>loadJSON("pd_completions",{}));
-const[savedExperiences,setSavedExperiences]=useState(()=>loadJSON("pd_saved",[]));
-const[goalProgress,setGoalProgress]=useState(()=>loadJSON("pd_goals",BOOTCAMP_GOALS.reduce((a,g)=>({...a,[g.id]:0}),{})));
-const[browseFilter,setBrowseFilter]=useState("All");
-const[browseMode,setBrowseMode]=useState("browse");
-const[goalEditing,setGoalEditing]=useState(null);
-const[showAffirmation,setShowAffirmation]=useState(false);
-const[currentAffirmation,setCurrentAffirmation]=useState(0);
-const[confetti,setConfetti]=useState([]);
-
-// Persist to localStorage
-useEffect(()=>{saveJSON("pd_completions",completions)},[completions]);
-useEffect(()=>{saveJSON("pd_saved",savedExperiences)},[savedExperiences]);
-useEffect(()=>{saveJSON("pd_goals",goalProgress)},[goalProgress]);
-
-function triggerConfetti(){
-const p=Array.from({length:12},(_,i)=>({id:Date.now()+i,x:Math.random()*100,delay:Math.random()*0.3,color:["#D4A574","#8B9E7C","#C4956A","#A67C5B","#E8D5C0"][Math.floor(Math.random()*5)]}));
-setConfetti(p);setTimeout(()=>setConfetti([]),1200);
-}
-
-function toggleHabit(habitId){
-const key=dateKey(selectedDate);
-const current=completions[key]||{};
-if(!current[habitId])triggerConfetti();
-setCompletions(prev=>{const dayData=prev[key]||{};return{...prev,[key]:{...dayData,[habitId]:!dayData[habitId]}}});
-}
-
-function getDayCompletions(date){return completions[dateKey(date)]||{}}
-function getDayProgress(date){
-const dc=getDayCompletions(date);const wk=isWeekend(date);
-const applicable=DAILY_HABITS.filter(h=>!wk||!h.weekdayOnly);
-const done=applicable.filter(h=>dc[h.id]).length;
-return applicable.length>0?done/applicable.length:0;
-}
-function getOverallProgress(){
-let total=0,done=0;
-ALL_DAYS.forEach(d=>{const dc=getDayCompletions(d);const wk=isWeekend(d);const applicable=DAILY_HABITS.filter(h=>!wk||!h.weekdayOnly);total+=applicable.length;done+=applicable.filter(h=>dc[h.id]).length});
-return total>0?done/total:0;
-}
-function getCompletedDaysCount(){return ALL_DAYS.filter(d=>getDayProgress(d)===1).length}
-function toggleSaveExperience(id){setSavedExperiences(prev=>prev.includes(id)?prev.filter(x=>x!==id):[...prev,id])}
-function cycleAffirmation(){setCurrentAffirmation(p=>(p+1)%AFFIRMATIONS.length);setShowAffirmation(true);setTimeout(()=>setShowAffirmation(false),3000)}
-
-const currentDayNumber=getDayNumber(today);
-const totalDays=42;
-const daysRemaining=Math.max(0,Math.ceil((END_DATE-today)/(1000*60*60*24)));
-const sprintProgress=Math.min(1,Math.max(0,currentDayNumber/totalDays));
-const dayProgress=getDayProgress(selectedDate);
-const dayCompletions_=getDayCompletions(selectedDate);
-const weekend=isWeekend(selectedDate);
-const applicableHabits=DAILY_HABITS.filter(h=>!weekend||!h.weekdayOnly);
-const filteredExperiences=browseMode==="saved"?EXPERIENCES.filter(x=>savedExperiences.includes(x.id)):browseFilter==="All"?EXPERIENCES:EXPERIENCES.filter(x=>x.category===browseFilter);
-
-const S={
-root:{fontFamily:"'DM Sans',-apple-system,sans-serif",background:"linear-gradient(180deg,#FAF7F4 0%,#F5EDE4 100%)",minHeight:"100vh",color:"#2C2520",maxWidth:480,margin:"0 auto",position:"relative",overflow:"hidden"},
-header:{padding:"40px 24px 20px",background:"linear-gradient(180deg,#F0E6DA 0%,#FAF7F4 100%)"},
-headerInner:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20},
-title:{fontFamily:"'Cormorant Garamond',serif",fontSize:32,fontWeight:600,letterSpacing:-0.5,color:"#2C2520",lineHeight:1.1},
-subtitle:{fontFamily:"'Cormorant Garamond',serif",fontSize:15,fontWeight:400,fontStyle:"italic",color:"#8A7E74",marginTop:4},
-dayBadge:{background:"#2C2520",borderRadius:14,padding:"10px 16px",display:"flex",flexDirection:"column",alignItems:"center",cursor:"pointer"},
-dayBadgeNum:{fontSize:18,fontWeight:700,color:"#D4A574",lineHeight:1.1},
-dayBadgeSub:{fontSize:10,color:"#A09080",letterSpacing:1,textTransform:"uppercase"},
-sprintBarTrack:{height:6,background:"#E8E0D8",borderRadius:3,position:"relative",marginTop:8},
-sprintBarFill:{height:"100%",background:"linear-gradient(90deg,#D4A574,#C4956A)",borderRadius:3,transition:"width 1s ease"},
-sprintMeta:{display:"flex",justifyContent:"space-between",marginTop:8},
-sprintMetaText:{fontSize:11,color:"#A09080"},
-nav:{display:"flex",gap:4,padding:"8px 24px",borderBottom:"1px solid #E8E0D8",background:"#FAF7F4",position:"sticky",top:0,zIndex:100},
-tabBtn:{flex:1,padding:"10px 0",fontSize:12,fontWeight:500,color:"#A09080",background:"transparent",border:"none",borderRadius:8,cursor:"pointer",letterSpacing:0.3,fontFamily:"'DM Sans',sans-serif"},
-tabBtnActive:{color:"#2C2520",background:"#E8E0D8",fontWeight:600},
-main:{padding:"20px 24px 100px"},
-datePicker:{display:"flex",gap:6,marginBottom:24,justifyContent:"center"},
-dateChip:{display:"flex",flexDirection:"column",alignItems:"center",padding:"8px 10px",borderRadius:12,background:"#fff",border:"1.5px solid #E8E0D8",cursor:"pointer",transition:"all 0.2s",minWidth:48},
-dateChipActive:{background:"#2C2520",borderColor:"#2C2520",color:"#fff"},
-dateChipToday:{borderColor:"#D4A574"},
-dateChipDay:{fontSize:10,fontWeight:500,opacity:0.6,marginBottom:2},
-dateChipNum:{fontSize:16,fontWeight:600,color:"#2C2520"},
-dateChipDone:{fontSize:8,color:"#8B9E7C",fontWeight:600,marginTop:2,textTransform:"uppercase",letterSpacing:0.5},
-progressSection:{display:"flex",alignItems:"center",gap:24,marginBottom:28,justifyContent:"center"},
-progressRingInner:{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",textAlign:"center"},
-progressPercent:{fontSize:28,fontWeight:700,color:"#2C2520",display:"block",fontFamily:"'Cormorant Garamond',serif"},
-progressLabel:{fontSize:10,color:"#A09080",letterSpacing:0.5},
-progressStats:{display:"flex",gap:16,alignItems:"center"},
-statItem:{display:"flex",flexDirection:"column",alignItems:"center"},
-statNum:{fontSize:22,fontWeight:700,color:"#2C2520",fontFamily:"'Cormorant Garamond',serif"},
-statLabel:{fontSize:10,color:"#A09080",marginTop:2},
-statDivider:{width:1,height:30,background:"#E8E0D8"},
-categoryLabel:{fontSize:11,fontWeight:600,color:"#A09080",textTransform:"uppercase",letterSpacing:1.5,marginBottom:8},
-habitCard:{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 16px",background:"#fff",borderRadius:14,marginBottom:6,cursor:"pointer",border:"1.5px solid #E8E0D8",userSelect:"none"},
-habitCardDone:{background:"#F5F8F2",borderColor:"#C8D5BE"},
-habitLeft:{display:"flex",alignItems:"center",gap:12},
-habitIcon:{fontSize:22},
-habitLabel:{fontSize:14,fontWeight:500,color:"#2C2520",transition:"all 0.3s"},
-habitSub:{fontSize:11,color:"#A09080",marginTop:1},
-checkbox:{width:26,height:26,borderRadius:8,border:"2px solid #D4C8BE",display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.3s",flexShrink:0},
-checkboxDone:{background:"#8B9E7C",borderColor:"#8B9E7C"},
-weekendNote:{background:"#F5EDE4",borderRadius:12,padding:"12px 16px",marginTop:16},
-weekendNoteText:{fontSize:13,color:"#A09080",fontStyle:"italic"},
-sectionTitle:{fontFamily:"'Cormorant Garamond',serif",fontSize:26,fontWeight:600,color:"#2C2520",marginBottom:4},
-sectionSub:{fontSize:13,color:"#A09080",marginBottom:20},
-weekCard:{background:"#fff",borderRadius:16,padding:"16px 18px",border:"1px solid #E8E0D8",marginBottom:12},
-weekCardHeader:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8},
-weekLabel:{fontSize:14,fontWeight:600,color:"#2C2520"},
-weekPercent:{fontSize:14,fontWeight:700,color:"#D4A574",fontFamily:"'Cormorant Garamond',serif"},
-weekBarTrack:{height:4,background:"#E8E0D8",borderRadius:2,marginBottom:10},
-weekBarFill:{height:"100%",background:"linear-gradient(90deg,#D4A574,#C4956A)",borderRadius:2,transition:"width 0.6s ease"},
-weekDays:{display:"flex",gap:6,justifyContent:"space-between"},
-weekDayDot:{width:32,height:32,borderRadius:8,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",transition:"background 0.3s"},
-overallCard:{background:"#2C2520",borderRadius:20,padding:24,marginTop:24},
-overallTitle:{fontFamily:"'Cormorant Garamond',serif",fontSize:20,fontWeight:500,color:"#D4A574",marginBottom:16},
-overallStats:{display:"flex",justifyContent:"space-around"},
-overallStatItem:{display:"flex",flexDirection:"column",alignItems:"center"},
-overallStatNum:{fontSize:28,fontWeight:700,color:"#F5EDE4",fontFamily:"'Cormorant Garamond',serif"},
-overallStatLabel:{fontSize:10,color:"#A09080",marginTop:4,textTransform:"uppercase",letterSpacing:0.8},
-goalCard:{background:"#fff",borderRadius:16,padding:18,border:"1px solid #E8E0D8",marginBottom:10},
-goalTop:{display:"flex",alignItems:"center",gap:14},
-goalLabel:{fontSize:14,fontWeight:500,color:"#2C2520",marginBottom:8},
-goalBarTrack:{height:6,background:"#E8E0D8",borderRadius:3},
-goalBarFill:{height:"100%",borderRadius:3,transition:"width 0.6s ease"},
-goalBottom:{display:"flex",justifyContent:"space-between",alignItems:"center",marginTop:10},
-goalProgress_:{fontSize:13,fontWeight:600,color:"#D4A574",cursor:"pointer",fontFamily:"'Cormorant Garamond',serif"},
-goalPercent:{fontSize:13,color:"#A09080"},
-goalSlider:{marginTop:12,padding:"0 4px"},
-browseHeader:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4},
-modeToggle:{fontSize:12,fontWeight:600,color:"#D4A574",background:"transparent",border:"1.5px solid #D4A574",borderRadius:20,padding:"6px 14px",cursor:"pointer",fontFamily:"'DM Sans',sans-serif"},
-filterRow:{display:"flex",gap:6,marginBottom:20,overflowX:"auto",paddingBottom:4},
-filterChip:{fontSize:11,fontWeight:500,color:"#A09080",background:"#fff",border:"1px solid #E8E0D8",borderRadius:20,padding:"6px 14px",cursor:"pointer",whiteSpace:"nowrap",fontFamily:"'DM Sans',sans-serif",transition:"all 0.2s"},
-filterChipActive:{color:"#fff",background:"#2C2520",borderColor:"#2C2520"},
-expCard:{background:"#fff",borderRadius:18,padding:20,border:"1px solid #E8E0D8",marginBottom:12},
-expCardTop:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10},
-expCategory:{fontSize:10,fontWeight:600,color:"#A09080",textTransform:"uppercase",letterSpacing:1.2},
-heartBtn:{fontSize:20,background:"none",border:"none",cursor:"pointer",color:"#D4A574",padding:4},
-expTitle:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:600,color:"#2C2520",marginBottom:8,lineHeight:1.2},
-expDesc:{fontSize:13,color:"#6B5E54",lineHeight:1.55,marginBottom:14},
-expMeta:{display:"flex",gap:6,flexWrap:"wrap"},
-expTag:{fontSize:10,fontWeight:500,color:"#8A7E74",background:"#FAF7F4",borderRadius:6,padding:"4px 10px"},
-emptyState:{textAlign:"center",padding:"40px 20px"},
-emptyText:{fontSize:14,color:"#A09080",lineHeight:1.5},
-trophyGrid:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:32},
-trophyCard:{borderRadius:18,padding:"20px 16px",textAlign:"center",position:"relative",overflow:"hidden"},
-trophyUnlocked:{background:"linear-gradient(135deg,#F5EDE4,#FFF)",border:"1.5px solid #D4A574"},
-trophyLocked:{background:"#F5F3F0",border:"1.5px solid #E8E0D8"},
-trophyLabel:{fontSize:13,fontWeight:600,color:"#2C2520",marginTop:8},
-trophyDesc:{fontSize:11,color:"#A09080",marginTop:4},
-trophyGlow:{position:"absolute",top:-20,right:-20,width:60,height:60,background:"radial-gradient(circle,rgba(212,165,116,0.2),transparent)",borderRadius:"50%"},
-quoteCard:{background:"#2C2520",borderRadius:18,padding:"24px 20px",cursor:"pointer",marginBottom:32},
-quoteText:{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:400,fontStyle:"italic",color:"#E8D5C0",lineHeight:1.5},
-quoteTap:{fontSize:10,color:"#A09080",marginTop:12,textTransform:"uppercase",letterSpacing:1},
-boardCard:{background:"#fff",borderRadius:16,padding:"16px 18px",border:"1px solid #E8E0D8",marginBottom:10},
-boardName:{fontFamily:"'Cormorant Garamond',serif",fontSize:17,fontWeight:600,color:"#2C2520"},
-boardRole:{fontSize:11,color:"#D4A574",fontWeight:500,marginTop:2,marginBottom:8},
-boardMsg:{fontSize:13,color:"#6B5E54",fontStyle:"italic",lineHeight:1.5},
-affirmationToast:{position:"fixed",top:20,left:"50%",transform:"translateX(-50%)",background:"#2C2520",borderRadius:14,padding:"14px 24px",zIndex:9999,maxWidth:360,textAlign:"center",animation:"slideDown 0.3s ease",boxShadow:"0 8px 32px rgba(44,37,32,0.3)"},
-affirmationText:{fontFamily:"'Cormorant Garamond',serif",fontSize:15,fontStyle:"italic",color:"#E8D5C0"},
-footer:{textAlign:"center",padding:24,borderTop:"1px solid #E8E0D8"},
-footerText:{fontFamily:"'Cormorant Garamond',serif",fontSize:14,fontStyle:"italic",color:"#A09080"},
-footerSub:{fontSize:10,color:"#C4B8AC",marginTop:4}
-};
-
-const catNames={ritual:"Morning Rituals",mind:"Mind",body:"Body",career:"Career",creative:"Creative"};
-
-// Confetti particles
-const confettiEls=confetti.map(p=>e("div",{key:p.id,style:{position:"fixed",top:"30%",left:p.x+"%",width:8,height:8,borderRadius:"50%",background:p.color,zIndex:9999,pointerEvents:"none",animation:"confettiFall 1s "+p.delay+"s ease-out forwards"}}));
-
-// Affirmation toast
-const toast=showAffirmation?e("div",{style:S.affirmationToast},e("p",{style:S.affirmationText},'"'+AFFIRMATIONS[currentAffirmation]+'"')):null;
-
-// SVG check
-const checkSvg=e("svg",{width:14,height:14,viewBox:"0 0 14 14",style:{animation:"popIn 0.3s ease"}},e("path",{d:"M2 7L5.5 10.5L12 3.5",stroke:"#fff",strokeWidth:2,fill:"none",strokeLinecap:"round"}));
-
-// Progress ring SVG
-const ringSvg=e("svg",{width:120,height:120,viewBox:"0 0 120 120"},
-e("circle",{cx:60,cy:60,r:52,fill:"none",stroke:"#E8E0D8",strokeWidth:6}),
-e("circle",{cx:60,cy:60,r:52,fill:"none",stroke:"#D4A574",strokeWidth:6,strokeDasharray:(dayProgress*327)+" 327",strokeLinecap:"round",transform:"rotate(-90 60 60)",style:{transition:"stroke-dasharray 0.6s cubic-bezier(0.34,1.56,0.64,1)"}})
-);
-
-// Date picker
-const dateIdx=ALL_DAYS.findIndex(d=>isSameDay(d,selectedDate));
-const visibleDays=ALL_DAYS.slice(Math.max(0,dateIdx-3),Math.min(ALL_DAYS.length,dateIdx+4));
-
-// Tab content
-let content=null;
-
-if(activeTab==="today"){
-content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
-// Date picker
-e("div",{style:S.datePicker},visibleDays.map(d=>
-e("button",{key:d.toISOString(),onClick:()=>setSelectedDate(d),style:{...S.dateChip,...(isSameDay(d,selectedDate)?S.dateChipActive:{}),...(isSameDay(d,today)?S.dateChipToday:{})}},
-e("span",{style:S.dateChipDay},formatDay(d)),
-e("span",{style:{...S.dateChipNum,...(isSameDay(d,selectedDate)?{color:"#fff"}:{})}},d.getDate()),
-getDayProgress(d)===1?e("span",{style:S.dateChipDone},"done"):null
-))),
-// Progress ring
-e("div",{style:S.progressSection},
-e("div",{style:{position:"relative",width:120,height:120,flexShrink:0}},ringSvg,
-e("div",{style:S.progressRingInner},e("span",{style:S.progressPercent},Math.round(dayProgress*100)+"%"),e("span",{style:S.progressLabel},formatDate(selectedDate)))
-),
-e("div",{style:S.progressStats},
-e("div",{style:S.statItem},e("span",{style:S.statNum},applicableHabits.filter(h=>dayCompletions_[h.id]).length),e("span",{style:S.statLabel},"Done")),
-e("div",{style:S.statDivider}),
-e("div",{style:S.statItem},e("span",{style:S.statNum},applicableHabits.length-applicableHabits.filter(h=>dayCompletions_[h.id]).length),e("span",{style:S.statLabel},"Left")),
-e("div",{style:S.statDivider}),
-e("div",{style:S.statItem},e("span",{style:S.statNum},getCompletedDaysCount()),e("span",{style:S.statLabel},"Perfect Days"))
-)),
-// Habits by category
-["ritual","mind","body","career","creative"].map(cat=>{
-const habits=applicableHabits.filter(h=>h.category===cat);
-if(habits.length===0)return null;
-return e("div",{key:cat,style:{marginBottom:20}},
-e("p",{style:S.categoryLabel},catNames[cat]),
-habits.map((habit,i)=>e("div",{key:habit.id,className:"habit-toggle",onClick:()=>toggleHabit(habit.id),style:{...S.habitCard,...(dayCompletions_[habit.id]?S.habitCardDone:{}),animation:"fadeInUp 0.4s "+(i*0.05)+"s ease backwards"}},
-e("div",{style:S.habitLeft},e("span",{style:S.habitIcon},habit.icon),e("div",null,e("p",{style:{...S.habitLabel,...(dayCompletions_[habit.id]?{textDecoration:"line-through",opacity:0.6}:{})}},habit.label),e("p",{style:S.habitSub},habit.subtitle))),
-e("div",{style:{...S.checkbox,...(dayCompletions_[habit.id]?S.checkboxDone:{})}},dayCompletions_[habit.id]?checkSvg:null)
-)))}),
-weekend?e("div",{style:S.weekendNote},e("p",{style:S.weekendNoteText},"Weekend mode: Outreach & Applications are off. Rest is productive too.")):null
-);
-}
-
-if(activeTab==="weekly"){
-content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
-e("h2",{style:S.sectionTitle},"Weekly View"),
-[0,1,2,3,4,5].map(wi=>{
-const weekDays=ALL_DAYS.slice(wi*7,wi*7+7);if(weekDays.length===0)return null;
-const wp=weekDays.reduce((s,d)=>s+getDayProgress(d),0)/weekDays.length;
-return e("div",{key:wi,style:{...S.weekCard,animation:"fadeInUp 0.4s "+(wi*0.08)+"s ease backwards"}},
-e("div",{style:S.weekCardHeader},e("span",{style:S.weekLabel},"Week "+(wi+1)),e("span",{style:S.weekPercent},Math.round(wp*100)+"%")),
-e("div",{style:S.weekBarTrack},e("div",{style:{...S.weekBarFill,width:(wp*100)+"%"}})),
-e("div",{style:S.weekDays},weekDays.map(d=>{const p=getDayProgress(d);return e("div",{key:d.toISOString(),onClick:()=>{setSelectedDate(d);setActiveTab("today")},style:{...S.weekDayDot,background:p===0?"#E8E0D8":p===1?"#8B9E7C":"#D4A574"},title:formatDate(d)+": "+Math.round(p*100)+"%"},e("span",{style:{fontSize:9,color:p>0.5?"#fff":"#8A7E74"}},d.getDate()))}))
-)}),
-e("div",{style:S.overallCard},
-e("h3",{style:S.overallTitle},"Bootcamp Totals"),
-e("div",{style:S.overallStats},
-e("div",{style:S.overallStatItem},e("span",{style:S.overallStatNum},Math.round(getOverallProgress()*100)+"%"),e("span",{style:S.overallStatLabel},"Overall")),
-e("div",{style:S.overallStatItem},e("span",{style:S.overallStatNum},getCompletedDaysCount()),e("span",{style:S.overallStatLabel},"Perfect Days")),
-e("div",{style:S.overallStatItem},e("span",{style:S.overallStatNum},ALL_DAYS.length),e("span",{style:S.overallStatLabel},"Total Days"))
-))
-);
-}
-
-if(activeTab==="goals"){
-content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
-e("h2",{style:S.sectionTitle},"Bootcamp Goals"),
-e("p",{style:S.sectionSub},"Tap any number to update your progress."),
-BOOTCAMP_GOALS.map((goal,i)=>{
-const progress=Math.min(1,goalProgress[goal.id]/goal.target);
-return e("div",{key:goal.id,style:{...S.goalCard,animation:"fadeInUp 0.4s "+(i*0.06)+"s ease backwards"}},
-e("div",{style:S.goalTop},e("span",{style:{fontSize:28}},goal.icon),e("div",{style:{flex:1}},e("p",{style:S.goalLabel},goal.label),e("div",{style:S.goalBarTrack},e("div",{style:{...S.goalBarFill,width:(progress*100)+"%",background:progress>=1?"#8B9E7C":"#D4A574"}})))),
-e("div",{style:S.goalBottom},e("span",{onClick:()=>setGoalEditing(goalEditing===goal.id?null:goal.id),style:S.goalProgress_},goalProgress[goal.id]+" / "+goal.target),e("span",{style:S.goalPercent},Math.round(progress*100)+"%")),
-goalEditing===goal.id?e("div",{style:S.goalSlider},e("input",{type:"range",min:0,max:goal.target,value:goalProgress[goal.id],onChange:ev=>setGoalProgress(p=>({...p,[goal.id]:parseInt(ev.target.value)})),style:{width:"100%"}})):null
-)})
-);
-}
-
-if(activeTab==="browse"){
-content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
-e("div",{style:S.browseHeader},
-e("h2",{style:S.sectionTitle},browseMode==="browse"?"Experience Boutique":"Your Collection"),
-e("button",{onClick:()=>setBrowseMode(browseMode==="browse"?"saved":"browse"),style:S.modeToggle},browseMode==="browse"?"Saved ("+savedExperiences.length+")":"Browse All")
-),
-browseMode==="browse"?e("div",{style:S.filterRow},EXPERIENCE_CATEGORIES.map(cat=>e("button",{key:cat,onClick:()=>setBrowseFilter(cat),style:{...S.filterChip,...(browseFilter===cat?S.filterChipActive:{})}},cat))):null,
-filteredExperiences.length===0?e("div",{style:S.emptyState},e("p",{style:{fontSize:40,marginBottom:12}},"\uD83D\uDECD\uFE0F"),e("p",{style:S.emptyText},browseMode==="saved"?"Nothing saved yet. Browse and tap the heart on experiences that call to you.":"No experiences in this category.")):null,
-filteredExperiences.map((exp,i)=>e("div",{key:exp.id,className:"exp-card",style:{...S.expCard,animation:"fadeInUp 0.4s "+(i*0.06)+"s ease backwards"}},
-e("div",{style:S.expCardTop},e("span",{style:S.expCategory},exp.category),e("button",{onClick:ev=>{ev.stopPropagation();toggleSaveExperience(exp.id)},style:S.heartBtn},savedExperiences.includes(exp.id)?"\u2665":"\u2661")),
-e("h3",{style:S.expTitle},exp.title),
-e("p",{style:S.expDesc},exp.desc),
-e("div",{style:S.expMeta},e("span",{style:S.expTag},exp.time),e("span",{style:S.expTag},exp.difficulty),e("span",{style:{...S.expTag,background:"#F5EDE4"}},exp.vibe))
-))
-);
-}
-
-if(activeTab==="trophies"){
-const board=[
+ 
+const BOARD=[
 {name:"Michelle Obama",role:"Chief Courage Officer",msg:"You know what to do. Stop asking permission."},
 {name:"Emma Grede",role:"Head of Getting It Done",msg:"Revenue first. Everything else is a story you tell yourself."},
 {name:"Jennifer Lawrence",role:"VP of Not Taking Yourself Too Seriously",msg:"Post the embarrassing TikTok. Trust me."},
 {name:"Dr. Joe Dispenza",role:"Chief Belief Architect",msg:"The version of you who has the VP title already exists. Become her."}
 ];
-content=e("div",{style:{animation:"fadeInUp 0.4s ease"}},
-e("h2",{style:S.sectionTitle},"Trophy Case"),
-e("p",{style:S.sectionSub},"Milestones unlocked along the way."),
-e("div",{style:S.trophyGrid},ACHIEVEMENTS.map((ach,i)=>{
-const unlocked=getCompletedDaysCount()>=ach.threshold;
-return e("div",{key:ach.id,style:{...S.trophyCard,...(unlocked?S.trophyUnlocked:S.trophyLocked),animation:"fadeInUp 0.4s "+(i*0.08)+"s ease backwards"}},
-e("span",{style:{fontSize:36,filter:unlocked?"none":"grayscale(1) opacity(0.4)"}},ach.icon),
-e("p",{style:S.trophyLabel},ach.label),
-e("p",{style:S.trophyDesc},ach.desc),
-unlocked?e("div",{style:S.trophyGlow}):null
-)})),
-e("h3",{style:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:500,color:"#2C2520",marginBottom:12}},"From Jackie's Desk"),
-e("div",{style:S.quoteCard,onClick:cycleAffirmation},e("p",{style:S.quoteText},'"'+AFFIRMATIONS[currentAffirmation]+'"'),e("p",{style:S.quoteTap},"tap for another")),
-e("h3",{style:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:500,color:"#2C2520",marginBottom:16}},"Your Board of Directors"),
-board.map((m,i)=>e("div",{key:i,style:{...S.boardCard,animation:"fadeInUp 0.5s "+(i*0.1)+"s ease backwards"}},
-e("p",{style:S.boardName},m.name),e("p",{style:S.boardRole},m.role),e("p",{style:S.boardMsg},'"'+m.msg+'"')
+ 
+const CATS=["All","Career Moves","Creative Life","Mindset","Discomfort","Nervous System","Body & Mind","Pure Joy"];
+ 
+function ld(k,fb){try{const v=localStorage.getItem(k);return v?JSON.parse(v):fb}catch(e){return fb}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+ 
+function App(){
+const today=new Date();
+const closest=ALL_DAYS.reduce((p,c)=>Math.abs(c-today)<Math.abs(p-today)?c:p);
+ 
+const[tab,setTab]=useState("today");
+const[selDate,setSelDate]=useState(closest);
+const[checks,setChecks]=useState(()=>ld("pd2_checks",{}));
+const[goals,setGoals]=useState(()=>ld("pd2_goals",CHALLENGE_GOALS.reduce((a,g)=>({...a,[g.id]:0}),{})));
+const[journal,setJournal]=useState(()=>ld("pd2_journal",[]));
+const[newEntry,setNewEntry]=useState("");
+const[saved,setSaved]=useState(()=>ld("pd2_saved",[]));
+const[browseFilter,setBrowseFilter]=useState("All");
+const[browseMode,setBrowseMode]=useState("browse");
+const[goalEdit,setGoalEdit]=useState(null);
+const[affIdx,setAffIdx]=useState(0);
+const[showAff,setShowAff]=useState(false);
+const[confetti,setConfetti]=useState([]);
+ 
+useEffect(()=>{sv("pd2_checks",checks)},[checks]);
+useEffect(()=>{sv("pd2_goals",goals)},[goals]);
+useEffect(()=>{sv("pd2_journal",journal)},[journal]);
+useEffect(()=>{sv("pd2_saved",saved)},[saved]);
+ 
+function pop(){
+const p=Array.from({length:12},(_,i)=>({id:Date.now()+i,x:Math.random()*100,dl:Math.random()*0.3,c:["#D4A574","#8B9E7C","#C4956A","#A67C5B","#E8D5C0"][Math.floor(Math.random()*5)]}));
+setConfetti(p);setTimeout(()=>setConfetti([]),1200);
+}
+ 
+function toggle(id){
+const k=dk(selDate),cur=checks[k]||{};
+if(!cur[id])pop();
+setChecks(p=>({...p,[k]:{...(p[k]||{}),[id]:!(p[k]||{})[id]}}));
+}
+ 
+function gc(d){return checks[dk(d)]||{}}
+function allItems(){return[...MORNING,...FOOD,...DAILY]}
+function dayDone(d){const c=gc(d);return allItems().every(x=>c[x.id])}
+function perfectDays(){return ALL_DAYS.filter(d=>dayDone(d)).length}
+function habitDays(id){return ALL_DAYS.filter(d=>(checks[dk(d)]||{})[id]).length}
+ 
+function addJournal(){
+if(!newEntry.trim())return;
+setJournal(p=>[{id:Date.now(),text:newEntry.trim(),date:new Date().toISOString()},...p]);
+setNewEntry("");pop();
+}
+ 
+function cycleAff(){setAffIdx(p=>(p+1)%AFFIRMATIONS.length);setShowAff(true);setTimeout(()=>setShowAff(false),3000)}
+ 
+const dn=dayNum(today),daysLeft=Math.max(0,Math.ceil((END-today)/864e5));
+const sprint=Math.min(1,Math.max(0,dn/TOTAL_DAYS));
+const dc=gc(selDate);
+ 
+// Styles
+const C={
+root:{fontFamily:"'DM Sans',-apple-system,sans-serif",background:"linear-gradient(180deg,#FAF7F4 0%,#F5EDE4 100%)",minHeight:"100vh",color:"#2C2520",maxWidth:480,margin:"0 auto",position:"relative",overflow:"hidden"},
+hdr:{padding:"40px 24px 20px",background:"linear-gradient(180deg,#F0E6DA 0%,#FAF7F4 100%)"},
+hdrIn:{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16},
+title:{fontFamily:"'Cormorant Garamond',serif",fontSize:32,fontWeight:600,letterSpacing:-0.5,lineHeight:1.1},
+sub:{fontFamily:"'Cormorant Garamond',serif",fontSize:15,fontWeight:400,fontStyle:"italic",color:"#8A7E74",marginTop:4},
+badge:{background:"#2C2520",borderRadius:14,padding:"10px 16px",display:"flex",flexDirection:"column",alignItems:"center",cursor:"pointer"},
+badgeN:{fontSize:18,fontWeight:700,color:"#D4A574",lineHeight:1.1},
+badgeS:{fontSize:10,color:"#A09080",letterSpacing:1,textTransform:"uppercase"},
+bar:{height:6,background:"#E8E0D8",borderRadius:3,marginTop:8},
+barF:{height:"100%",background:"linear-gradient(90deg,#D4A574,#C4956A)",borderRadius:3,transition:"width 1s ease"},
+mt:{display:"flex",justifyContent:"space-between",marginTop:8},
+mtT:{fontSize:11,color:"#A09080"},
+nav:{display:"flex",gap:2,padding:"8px 12px",borderBottom:"1px solid #E8E0D8",background:"#FAF7F4",position:"sticky",top:0,zIndex:100},
+tB:{flex:1,padding:"10px 0",fontSize:11,fontWeight:500,color:"#A09080",background:"transparent",border:"none",borderRadius:8,cursor:"pointer",letterSpacing:0.2,fontFamily:"'DM Sans',sans-serif"},
+tA:{color:"#2C2520",background:"#E8E0D8",fontWeight:600},
+main:{padding:"20px 24px 100px"},
+dp:{display:"flex",gap:5,marginBottom:20,justifyContent:"center",overflowX:"auto",paddingBottom:4},
+dch:{display:"flex",flexDirection:"column",alignItems:"center",padding:"7px 9px",borderRadius:12,background:"#fff",border:"1.5px solid #E8E0D8",cursor:"pointer",transition:"all 0.2s",minWidth:44,flexShrink:0},
+dchA:{background:"#2C2520",borderColor:"#2C2520"},
+dchT:{borderColor:"#D4A574"},
+dchD:{fontSize:10,fontWeight:500,opacity:0.6,marginBottom:1},
+dchN:{fontSize:15,fontWeight:600},
+dchOk:{fontSize:7,color:"#8B9E7C",fontWeight:700,marginTop:2,textTransform:"uppercase",letterSpacing:0.5},
+secL:{fontSize:11,fontWeight:600,color:"#A09080",textTransform:"uppercase",letterSpacing:1.5,marginBottom:8,marginTop:20},
+cd:{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"13px 16px",background:"#fff",borderRadius:14,marginBottom:5,cursor:"pointer",border:"1.5px solid #E8E0D8",userSelect:"none"},
+cdD:{background:"#F5F8F2",borderColor:"#C8D5BE"},
+cL:{display:"flex",alignItems:"center",gap:12},
+cI:{fontSize:20},
+cN:{fontSize:14,fontWeight:500},
+cb:{width:26,height:26,borderRadius:8,border:"2px solid #D4C8BE",display:"flex",alignItems:"center",justifyContent:"center",transition:"all 0.3s",flexShrink:0},
+cbD:{background:"#8B9E7C",borderColor:"#8B9E7C"},
+dk:{background:"#2C2520",borderRadius:20,padding:24,marginTop:20},
+dkS:{display:"flex",justifyContent:"space-around"},
+dkI:{display:"flex",flexDirection:"column",alignItems:"center"},
+dkN:{fontSize:28,fontWeight:700,color:"#F5EDE4",fontFamily:"'Cormorant Garamond',serif"},
+dkL:{fontSize:10,color:"#A09080",marginTop:4,textTransform:"uppercase",letterSpacing:0.8},
+stit:{fontFamily:"'Cormorant Garamond',serif",fontSize:26,fontWeight:600,marginBottom:4},
+ssub:{fontSize:13,color:"#A09080",marginBottom:20},
+gC:{background:"#fff",borderRadius:16,padding:16,border:"1px solid #E8E0D8",marginBottom:10},
+gT:{display:"flex",alignItems:"center",gap:12},
+gN:{fontSize:14,fontWeight:500,marginBottom:6},
+gBr:{height:6,background:"#E8E0D8",borderRadius:3},
+gBf:{height:"100%",borderRadius:3,transition:"width 0.6s ease"},
+gBt:{display:"flex",justifyContent:"space-between",marginTop:8},
+gP:{fontSize:13,fontWeight:600,color:"#D4A574",cursor:"pointer",fontFamily:"'Cormorant Garamond',serif"},
+gPc:{fontSize:13,color:"#A09080"},
+hC:{background:"#fff",borderRadius:14,padding:"12px 16px",border:"1px solid #E8E0D8",marginBottom:8,display:"flex",alignItems:"center",gap:10},
+hN:{fontSize:13,fontWeight:500,flex:1},
+hP:{fontSize:12,color:"#D4A574",fontWeight:600,fontFamily:"'Cormorant Garamond',serif",minWidth:55,textAlign:"right"},
+hBO:{flex:2,height:4,background:"#E8E0D8",borderRadius:2},
+hBF:{height:"100%",borderRadius:2,transition:"width 0.5s ease"},
+jC:{background:"#fff",borderRadius:14,padding:"14px 16px",border:"1px solid #E8E0D8",marginBottom:8},
+jD:{fontSize:10,color:"#A09080",marginBottom:4},
+jT:{fontSize:13,lineHeight:1.5},
+jX:{fontSize:11,color:"#C4956A",background:"none",border:"none",cursor:"pointer",marginTop:6,fontFamily:"'DM Sans',sans-serif"},
+mTg:{fontSize:12,fontWeight:600,color:"#D4A574",background:"transparent",border:"1.5px solid #D4A574",borderRadius:20,padding:"6px 14px",cursor:"pointer",fontFamily:"'DM Sans',sans-serif"},
+fR:{display:"flex",gap:6,marginBottom:16,overflowX:"auto",paddingBottom:4},
+fC:{fontSize:11,fontWeight:500,color:"#A09080",background:"#fff",border:"1px solid #E8E0D8",borderRadius:20,padding:"6px 12px",cursor:"pointer",whiteSpace:"nowrap",fontFamily:"'DM Sans',sans-serif",transition:"all 0.2s"},
+fCA:{color:"#fff",background:"#2C2520",borderColor:"#2C2520"},
+eC:{background:"#fff",borderRadius:18,padding:20,border:"1px solid #E8E0D8",marginBottom:12},
+eCt:{fontSize:10,fontWeight:600,color:"#A09080",textTransform:"uppercase",letterSpacing:1.2},
+eH:{fontSize:20,background:"none",border:"none",cursor:"pointer",color:"#D4A574",padding:4},
+eT:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:600,marginBottom:8,lineHeight:1.2},
+eDs:{fontSize:13,color:"#6B5E54",lineHeight:1.55,marginBottom:14},
+eTg:{fontSize:10,fontWeight:500,color:"#8A7E74",background:"#FAF7F4",borderRadius:6,padding:"4px 10px"},
+tG:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:32},
+tC:{borderRadius:18,padding:"20px 16px",textAlign:"center",position:"relative",overflow:"hidden"},
+tU:{background:"linear-gradient(135deg,#F5EDE4,#FFF)",border:"1.5px solid #D4A574"},
+tLk:{background:"#F5F3F0",border:"1.5px solid #E8E0D8"},
+tN:{fontSize:13,fontWeight:600,marginTop:8},
+tDs:{fontSize:11,color:"#A09080",marginTop:4},
+tGl:{position:"absolute",top:-20,right:-20,width:60,height:60,background:"radial-gradient(circle,rgba(212,165,116,0.2),transparent)",borderRadius:"50%"},
+qC:{background:"#2C2520",borderRadius:18,padding:"24px 20px",cursor:"pointer",marginBottom:24},
+qT:{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontStyle:"italic",color:"#E8D5C0",lineHeight:1.5},
+qP:{fontSize:10,color:"#A09080",marginTop:12,textTransform:"uppercase",letterSpacing:1},
+bC:{background:"#fff",borderRadius:16,padding:"16px 18px",border:"1px solid #E8E0D8",marginBottom:10},
+bN:{fontFamily:"'Cormorant Garamond',serif",fontSize:17,fontWeight:600},
+bR:{fontSize:11,color:"#D4A574",fontWeight:500,marginTop:2,marginBottom:8},
+bM:{fontSize:13,color:"#6B5E54",fontStyle:"italic",lineHeight:1.5},
+ts:{position:"fixed",top:20,left:"50%",transform:"translateX(-50%)",background:"#2C2520",borderRadius:14,padding:"14px 24px",zIndex:9999,maxWidth:360,textAlign:"center",animation:"slideDown 0.3s ease",boxShadow:"0 8px 32px rgba(44,37,32,0.3)"},
+tsT:{fontFamily:"'Cormorant Garamond',serif",fontSize:15,fontStyle:"italic",color:"#E8D5C0"},
+ft:{textAlign:"center",padding:24,borderTop:"1px solid #E8E0D8"},
+ftT:{fontFamily:"'Cormorant Garamond',serif",fontSize:14,fontStyle:"italic",color:"#A09080"},
+ftS:{fontSize:10,color:"#C4B8AC",marginTop:4}
+};
+ 
+const chk=h("svg",{width:14,height:14,viewBox:"0 0 14 14",style:{animation:"popIn 0.3s ease"}},h("path",{d:"M2 7L5.5 10.5L12 3.5",stroke:"#fff",strokeWidth:2,fill:"none",strokeLinecap:"round"}));
+ 
+const di=ALL_DAYS.findIndex(d=>sameDay(d,selDate));
+const vis=ALL_DAYS.slice(Math.max(0,di-3),Math.min(ALL_DAYS.length,di+4));
+ 
+function renderItem(item,i){
+return h("div",{key:item.id,className:"habit-toggle",onClick:()=>toggle(item.id),style:{...C.cd,...(dc[item.id]?C.cdD:{}),animation:"fadeInUp 0.4s "+(i*0.04)+"s ease backwards"}},
+h("div",{style:C.cL},h("span",{style:C.cI},item.icon),h("p",{style:{...C.cN,...(dc[item.id]?{textDecoration:"line-through",opacity:0.5}:{})}},item.label)),
+h("div",{style:{...C.cb,...(dc[item.id]?C.cbD:{})}},dc[item.id]?chk:null)
+);
+}
+ 
+// ─── TAB: TODAY ───
+function renderToday(){
+const done=allItems().filter(x=>dc[x.id]).length;
+return h("div",{style:{animation:"fadeInUp 0.4s ease"}},
+h("div",{style:C.dp},vis.map(d=>
+h("button",{key:d.toISOString(),onClick:()=>setSelDate(d),style:{...C.dch,...(sameDay(d,selDate)?C.dchA:{}),...(sameDay(d,today)?C.dchT:{})}},
+h("span",{style:{...C.dchD,color:sameDay(d,selDate)?"#A09080":"inherit"}},fmtDay(d)),
+h("span",{style:{...C.dchN,color:sameDay(d,selDate)?"#fff":"#2C2520"}},d.getDate()),
+dayDone(d)?h("span",{style:C.dchOk},"done"):null
+))),
+h("p",{style:{...C.secL,marginTop:0}},"Morning Routine"),
+MORNING.map((x,i)=>renderItem(x,i)),
+h("p",{style:C.secL},"Food Rules"),
+FOOD.map((x,i)=>renderItem(x,i)),
+h("p",{style:C.secL},"Daily Work"),
+DAILY.map((x,i)=>renderItem(x,i)),
+h("div",{style:C.dk},h("div",{style:C.dkS},
+h("div",{style:C.dkI},h("span",{style:C.dkN},done+"/"+allItems().length),h("span",{style:C.dkL},"Today")),
+h("div",{style:C.dkI},h("span",{style:C.dkN},perfectDays()),h("span",{style:C.dkL},"Perfect Days")),
+h("div",{style:C.dkI},h("span",{style:C.dkN},daysLeft),h("span",{style:C.dkL},"Days Left"))
 ))
 );
 }
-
-return e("div",{style:S.root},
-confettiEls,toast,
-// Header
-e("header",{style:S.header},
-e("div",{style:S.headerInner},
-e("div",null,e("h1",{style:S.title},"Project Delulu"),e("p",{style:S.subtitle},"The Great Lock-In")),
-e("div",null,e("div",{style:S.dayBadge,onClick:cycleAffirmation},e("span",{style:S.dayBadgeNum},"Day "+Math.min(currentDayNumber,42)),e("span",{style:S.dayBadgeSub},"of 42")))
-),
-e("div",{style:S.sprintBarTrack},e("div",{style:{...S.sprintBarFill,width:(sprintProgress*100)+"%"}})),
-e("div",{style:S.sprintMeta},e("span",{style:S.sprintMetaText},daysRemaining+" days remaining"),e("span",{style:S.sprintMetaText},Math.round(sprintProgress*100)+"% through"))
-),
-// Nav
-e("nav",{style:S.nav},[{key:"today",label:"Today"},{key:"weekly",label:"Weekly"},{key:"goals",label:"Goals"},{key:"browse",label:"Browse"},{key:"trophies",label:"Trophies"}].map(tab=>
-e("button",{key:tab.key,className:"tab-btn",onClick:()=>setActiveTab(tab.key),style:{...S.tabBtn,...(activeTab===tab.key?S.tabBtnActive:{})}},tab.label)
+ 
+// ─── TAB: PROGRESS ───
+function renderProgress(){
+return h("div",{style:{animation:"fadeInUp 0.4s ease"}},
+h("h2",{style:C.stit},"Challenge Progress"),
+h("p",{style:C.ssub},"Where you stand across the full 30 days. Tap numbers to adjust."),
+h("p",{style:{...C.secL,marginTop:0}},"Big Goals"),
+CHALLENGE_GOALS.map((g,i)=>{
+const pct=Math.min(1,goals[g.id]/g.target);
+return h("div",{key:g.id,onClick:()=>setGoalEdit(goalEdit===g.id?null:g.id),style:{...C.gC,cursor:"pointer",animation:"fadeInUp 0.4s "+(i*0.06)+"s ease backwards"}},
+h("div",{style:C.gT},h("span",{style:{fontSize:26}},g.icon),h("div",{style:{flex:1}},
+h("p",{style:C.gN},g.label),
+h("div",{style:C.gBr},h("div",{style:{...C.gBf,width:(pct*100)+"%",background:pct>=1?"#8B9E7C":"#D4A574"}}))
 )),
-// Content
-e("main",{style:S.main},content),
-// Footer
-e("footer",{style:S.footer},e("p",{style:S.footerText},"High Agency. Speed of Action. Addicted to Failing."),e("p",{style:S.footerSub},"Mar 16 \u2014 Apr 26, 2026"))
+h("div",{style:C.gBt},
+h("span",{style:C.gP},(Math.round(goals[g.id]*10)/10)+" / "+g.target+" "+g.unit),
+h("span",{style:C.gPc},Math.round(pct*100)+"%")
+),
+goalEdit===g.id?h("div",{style:{marginTop:10},onClick:function(ev){ev.stopPropagation()}},h("input",{type:"range",min:0,max:g.target,step:g.step||1,value:goals[g.id],onChange:ev=>setGoals(p=>({...p,[g.id]:parseFloat(ev.target.value)})),style:{width:"100%"}})):null
+);}),
+h("p",{style:C.secL},"Daily Habit Consistency"),
+HABIT_TRACKERS.map((t,i)=>{
+let val;
+if(t.id==="jobs"||t.id==="outreach"){val=habitDays(t.id)*5;}
+else if(t.id==="cleanfood"){val=ALL_DAYS.filter(d=>{const c=gc(d);return c.eggs&&c.nocarbs&&c.noalc&&c.nosweet}).length;}
+else{val=habitDays(t.id);}
+const pct=Math.min(1,val/t.target);
+return h("div",{key:t.id,style:{...C.hC,animation:"fadeInUp 0.4s "+(i*0.04)+"s ease backwards"}},
+h("span",{style:{fontSize:18}},t.icon),
+h("span",{style:C.hN},t.label),
+h("div",{style:C.hBO},h("div",{style:{...C.hBF,width:(pct*100)+"%",background:pct>=1?"#8B9E7C":"#D4A574"}})),
+h("span",{style:C.hP},val+" / "+t.target)
+);})
 );
 }
-
-ReactDOM.createRoot(document.getElementById("root")).render(e(App));
+ 
+// ─── TAB: JACKIE HQ ───
+function renderJackie(){
+return h("div",{style:{animation:"fadeInUp 0.4s ease"}},
+h("h2",{style:C.stit},"Jackie HQ"),
+h("p",{style:C.ssub},"Log every miracle. Hot water from the tap counts. Someone held the door? Write it down. Train your brain to see abundance."),
+h("textarea",{value:newEntry,onChange:ev=>setNewEntry(ev.target.value),placeholder:"Something amazing just happened...",rows:3,style:{marginBottom:10}}),
+h("button",{onClick:addJournal,style:{width:"100%",padding:"12px",background:"#2C2520",color:"#D4A574",border:"none",borderRadius:12,fontSize:14,fontWeight:600,cursor:"pointer",fontFamily:"'DM Sans',sans-serif",marginBottom:24}},"Add to abundance log"),
+h("div",{style:C.qC,onClick:cycleAff},h("p",{style:C.qT},'"'+AFFIRMATIONS[affIdx]+'"'),h("p",{style:C.qP},"tap for another")),
+h("p",{style:C.secL},"Abundance Log ("+journal.length+" entries)"),
+journal.length===0?h("p",{style:{fontSize:13,color:"#A09080",textAlign:"center",padding:20}},"Nothing here yet. Start noticing the good stuff."):null,
+journal.map(entry=>h("div",{key:entry.id,style:C.jC},
+h("p",{style:C.jD},new Date(entry.date).toLocaleDateString("en-US",{month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"})),
+h("p",{style:C.jT},entry.text),
+h("button",{style:C.jX,onClick:()=>setJournal(p=>p.filter(x=>x.id!==entry.id))},"remove")
+))
+);
+}
+ 
+// ─── TAB: BROWSE ───
+function renderBrowse(){
+const filtered=browseMode==="saved"?EXPERIENCES.filter(x=>saved.includes(x.id)):browseFilter==="All"?EXPERIENCES:EXPERIENCES.filter(x=>x.category===browseFilter);
+return h("div",{style:{animation:"fadeInUp 0.4s ease"}},
+h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:4}},
+h("h2",{style:C.stit},browseMode==="browse"?"Experience Boutique":"Your Collection"),
+h("button",{onClick:()=>setBrowseMode(browseMode==="browse"?"saved":"browse"),style:C.mTg},browseMode==="browse"?"Saved ("+saved.length+")":"Browse All")
+),
+h("p",{style:C.ssub},"Bonus activities to sprinkle into your days."),
+browseMode==="browse"?h("div",{style:C.fR},CATS.map(c=>h("button",{key:c,onClick:()=>setBrowseFilter(c),style:{...C.fC,...(browseFilter===c?C.fCA:{})}},c))):null,
+filtered.length===0?h("div",{style:{textAlign:"center",padding:"40px 20px"}},h("p",{style:{fontSize:40,marginBottom:12}},"\uD83D\uDECD\uFE0F"),h("p",{style:{fontSize:14,color:"#A09080"}},browseMode==="saved"?"Nothing saved yet. Browse and tap the heart.":"No experiences here.")):null,
+filtered.map((x,i)=>h("div",{key:x.id,className:"exp-card",style:{...C.eC,animation:"fadeInUp 0.4s "+(i*0.05)+"s ease backwards"}},
+h("div",{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}},
+h("span",{style:C.eCt},x.category),
+h("button",{onClick:ev=>{ev.stopPropagation();setSaved(p=>p.includes(x.id)?p.filter(z=>z!==x.id):[...p,x.id])},style:C.eH},saved.includes(x.id)?"\u2665":"\u2661")
+),
+h("h3",{style:C.eT},x.title),
+h("p",{style:C.eDs},x.desc),
+h("div",{style:{display:"flex",gap:6,flexWrap:"wrap"}},h("span",{style:C.eTg},x.time),h("span",{style:C.eTg},x.difficulty),h("span",{style:{...C.eTg,background:"#F5EDE4"}},x.vibe))
+))
+);
+}
+ 
+// ─── TAB: TROPHIES ───
+function renderTrophies(){
+const pd=perfectDays();
+return h("div",{style:{animation:"fadeInUp 0.4s ease"}},
+h("h2",{style:C.stit},"Trophy Case"),
+h("p",{style:C.ssub},"Milestones unlocked along the way."),
+h("div",{style:C.tG},ACHIEVEMENTS.map((a,i)=>{
+const u=pd>=a.threshold;
+return h("div",{key:a.id,style:{...C.tC,...(u?C.tU:C.tLk),animation:"fadeInUp 0.4s "+(i*0.08)+"s ease backwards"}},
+h("span",{style:{fontSize:36,filter:u?"none":"grayscale(1) opacity(0.4)"}},a.icon),
+h("p",{style:C.tN},a.label),h("p",{style:C.tDs},a.desc),
+u?h("div",{style:C.tGl}):null
+);})),
+h("h3",{style:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:500,marginBottom:12,marginTop:8}},"From Jackie's Desk"),
+h("div",{style:C.qC,onClick:cycleAff},h("p",{style:C.qT},'"'+AFFIRMATIONS[affIdx]+'"'),h("p",{style:C.qP},"tap for another")),
+h("h3",{style:{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:500,marginBottom:16}},"Your Board of Directors"),
+BOARD.map((m,i)=>h("div",{key:i,style:{...C.bC,animation:"fadeInUp 0.5s "+(i*0.1)+"s ease backwards"}},
+h("p",{style:C.bN},m.name),h("p",{style:C.bR},m.role),h("p",{style:C.bM},'"'+m.msg+'"')
+))
+);
+}
+ 
+const tabs=[{k:"today",l:"Today"},{k:"progress",l:"Progress"},{k:"jackie",l:"Jackie HQ"},{k:"browse",l:"Browse"},{k:"trophies",l:"Trophies"}];
+ 
+return h("div",{style:C.root},
+confetti.map(p=>h("div",{key:p.id,style:{position:"fixed",top:"30%",left:p.x+"%",width:8,height:8,borderRadius:"50%",background:p.c,zIndex:9999,pointerEvents:"none",animation:"confettiFall 1s "+p.dl+"s ease-out forwards"}})),
+showAff?h("div",{style:C.ts},h("p",{style:C.tsT},'"'+AFFIRMATIONS[affIdx]+'"')):null,
+h("header",{style:C.hdr},
+h("div",{style:C.hdrIn},
+h("div",null,h("h1",{style:C.title},"Project Delulu"),h("p",{style:C.sub},"The Great Lock-In")),
+h("div",{style:C.badge,onClick:cycleAff},h("span",{style:C.badgeN},"Day "+Math.min(Math.max(dn,1),30)),h("span",{style:C.badgeS},"of 30"))
+),
+h("div",{style:C.bar},h("div",{style:{...C.barF,width:(sprint*100)+"%"}})),
+h("div",{style:C.mt},h("span",{style:C.mtT},daysLeft+" days remaining"),h("span",{style:C.mtT},Math.round(sprint*100)+"% through"))
+),
+h("nav",{style:C.nav},tabs.map(t=>h("button",{key:t.k,className:"tab-btn",onClick:()=>setTab(t.k),style:{...C.tB,...(tab===t.k?C.tA:{})}},t.l))),
+h("main",{style:C.main},tab==="today"?renderToday():tab==="progress"?renderProgress():tab==="jackie"?renderJackie():tab==="browse"?renderBrowse():renderTrophies()),
+h("footer",{style:C.ft},h("p",{style:C.ftT},"Follow the plan, not your mood."),h("p",{style:C.ftS},"Mar 18 \u2014 Apr 16, 2026"))
+);
+}
+ 
+ReactDOM.createRoot(document.getElementById("root")).render(h(App));
 </script>
 </body>
 </html>
+ 
