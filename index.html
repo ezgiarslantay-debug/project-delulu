@@ -33,7 +33,7 @@ textarea:focus{border-color:#D4A574}
 <script>
 const h=React.createElement,{useState,useEffect}=React;
 
-const START=new Date(2026,2,18),END=new Date(2026,3,16),TOTAL_DAYS=30;
+const START=new Date(2026,2,23),END=new Date(2026,3,21),TOTAL_DAYS=30;
 function genDays(){const d=[];let c=new Date(START);while(c<=END){d.push(new Date(c));c.setDate(c.getDate()+1)}return d}
 const ALL_DAYS=genDays();
 function dayNum(d){return Math.floor((d-START)/864e5)+1}
@@ -43,15 +43,14 @@ function fmtDay(d){return d.toLocaleDateString("en-US",{weekday:"short"})}
 function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
 
 const MORNING=[
-{id:"wake",label:"Wake up 7am",icon:"\u2600\uFE0F"},
+{id:"wake",label:"Wake up 7:30am",icon:"\u2600\uFE0F"},
 {id:"weigh",label:"Weigh yourself",icon:"\u2696\uFE0F"},
 {id:"coffee",label:"Make coffee",icon:"\u2615"},
-{id:"mirror",label:"10 min mirror exercise",icon:"\uD83E\uDE9E"},
+{id:"mirror",label:"10 min wall exercise",icon:"\uD83E\uDE9E"},
 {id:"write",label:"750 words morning writing",icon:"\u270D\uFE0F"},
 {id:"meditate",label:"20 min meditation",icon:"\uD83E\uDDD8\u200D\u2640\uFE0F"},
 {id:"skincare",label:"Skincare",icon:"\u2728"},
-{id:"makeup",label:"Makeup",icon:"\uD83D\uDC84"},
-{id:"affirm",label:"Read affirmations out loud",icon:"\uD83D\uDCAB"}
+{id:"makeup",label:"Makeup",icon:"\uD83D\uDC84"}
 ];
 
 const FOOD=[
@@ -431,7 +430,7 @@ h("div",{style:C.mt},h("span",{style:C.mtT},daysLeft+" days remaining"),h("span"
 ),
 h("nav",{style:C.nav},tabs.map(t=>h("button",{key:t.k,className:"tab-btn",onClick:()=>setTab(t.k),style:{...C.tB,...(tab===t.k?C.tA:{})}},t.l))),
 h("main",{style:C.main},tab==="today"?renderToday():tab==="progress"?renderProgress():tab==="jackie"?renderJackie():tab==="browse"?renderBrowse():renderTrophies()),
-h("footer",{style:C.ft},h("p",{style:C.ftT},"Follow the plan, not your mood."),h("p",{style:C.ftS},"Mar 18 \u2014 Apr 16, 2026"))
+h("footer",{style:C.ft},h("p",{style:C.ftT},"Follow the plan, not your mood."),h("p",{style:C.ftS},"Mar 23 \u2014 Apr 21, 2026"))
 );
 }
 
